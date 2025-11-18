@@ -513,6 +513,7 @@
     </style>
 </head>
 <body>
+
     <div class="glass-card">
         <!-- Logo -->
         <div class="logo">PocketHisab</div>
@@ -1106,9 +1107,11 @@
             // Show loading state
             verifyBtn.classList.add('btn-loading');
             verifyBtn.disabled = true;
+            showLoading();
 
             // Simulate OTP verification
             setTimeout(() => {
+                hideLoading();
                 verifyBtn.classList.remove('btn-loading');
                 verifyBtn.disabled = false;
                 
