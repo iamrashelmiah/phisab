@@ -570,6 +570,29 @@
             margin-top: 15px;
         }
 
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #8a6de9;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Message Box */
         .message {
             position: fixed;
@@ -777,6 +800,11 @@
 </head>
 <body>
 
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <!-- Left Side: Logo + Brand Name -->
@@ -901,7 +929,7 @@
             </div>
         </div>
 
-        <!-- Payment Methods Section - NEW SECTION ADDED -->
+        <!-- Payment Methods Section -->
         <div class="payment-section">
             <h2 class="payment-title" id="paymentTitle">Available Payment Methods</h2>
             <div class="payment-methods">
@@ -1106,7 +1134,6 @@
 
         // Show message function
         function showMessage(text, type) {
-            // Create temporary message element
             const message = document.createElement('div');
             message.textContent = text;
             message.className = 'message ' + type;
@@ -1117,6 +1144,16 @@
             setTimeout(() => {
                 message.remove();
             }, 4000);
+        }
+
+        // Show loading spinner
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        }
+
+        // Hide loading spinner
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
         }
 
         // Select Plan
@@ -1134,7 +1171,8 @@
             // Save selected plan
             localStorage.setItem('selectedPlan', plan);
             
-            // Redirect to signup with plan pre-selected
+            // Show loading and redirect
+            showLoading();
             setTimeout(() => {
                 window.location.href = 'signup.html';
             }, 1500);
@@ -1156,17 +1194,20 @@
         // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-                showLoading();
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 500);
+                if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    showLoading();
+                    setTimeout(() => {
+                        window.location.href = this.getAttribute('href');
+                    }, 500);
+                }
             });
         });
 
         // CTA buttons loading state
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (this.getAttribute('href')) {
+                if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
                     e.preventDefault();
                     showLoading();
                     setTimeout(() => {
@@ -1291,11 +1332,6 @@
                 localStorage.setItem('darkMode', isDarkMode.toString());
             }
         });
-
-        function showLoading() {
-            // You can add a loading spinner here if needed
-            console.log('Loading...');
-        }
     </script>
 </body>
 </html>
