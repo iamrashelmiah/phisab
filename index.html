@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PocketHisab - Login</title>
+    <title>PocketHisab - Premium Personal Accounting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== ENHANCED PREMIUM STYLES ===== */
+        
+        /* CSS Variables for Consistency */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            --secondary-gradient: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent-gold: #ffd700;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Enhanced Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -14,28 +30,65 @@
 
         body {
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--secondary-gradient);
             background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
+            animation: gradientAnimation 20s ease infinite;
             overflow-x: hidden;
-            transition: background 1s ease;
+            line-height: 1.6;
+            color: var(--text-primary);
         }
 
+        /* Premium Gradient Animation */
         @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 50% 50%; }
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            75% { background-position: 50% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
-        /* Navigation Bar */
+        /* Enhanced Glass Morphism */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(138, 109, 233, 0.25);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Premium Navigation */
         .navbar {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 10px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -46,7 +99,8 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            border-radius: 0 0 15px 15px;
+            border-radius: 0 0 20px 20px;
+            transition: var(--transition-smooth);
         }
 
         .nav-left {
@@ -62,21 +116,21 @@
         }
 
         .logo-circle {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(138, 109, 233, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition-smooth);
         }
 
         .logo-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(138, 109, 233, 0.4);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(138, 109, 233, 0.4);
         }
 
         .logo-circle i {
@@ -85,13 +139,13 @@
         }
 
         .nav-brand {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 800;
             background: linear-gradient(45deg, #ffffff, #e6e6ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            letter-spacing: -0.5px;
         }
 
         .nav-center {
@@ -216,24 +270,279 @@
             font-size: 12px;
         }
 
-        /* Mobile Responsive */
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Premium Typography */
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        /* Enhanced Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 8px 20px rgba(138, 109, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(138, 109, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Premium Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.05), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(138, 109, 233, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.08);
+            box-shadow: 0 6px 18px rgba(138, 109, 233, 0.35);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 50px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        /* Enhanced Form Elements */
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            border: 1.5px solid transparent;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #8a6de9;
+            box-shadow: 0 0 0 3px rgba(138, 109, 233, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Premium Pricing Cards */
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+            background: var(--accent-gold);
+            color: #333;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
             .navbar {
-                padding: 8px 20px;
+                padding: 0.75rem 1rem;
                 flex-wrap: wrap;
-                gap: 8px;
             }
             
-            .nav-left {
-                order: 1;
-                flex: 1;
+            .nav-brand {
+                font-size: 1.4rem;
             }
             
-            .nav-controls {
-                order: 2;
-                gap: 6px;
+            .logo-circle {
+                width: 40px;
+                height: 40px;
             }
             
+            .glass-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+                margin-top: 1rem;
+            }
+            
+            .pricing-card.popular::after {
+                right: -3rem;
+                font-size: 0.7rem;
+            }
+
             .nav-center {
                 order: 3;
                 flex: 1 1 100%;
@@ -255,25 +564,44 @@
                 height: 28px;
             }
             
-            .nav-brand {
-                font-size: 1.3rem;
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
-            .logo-circle {
-                width: 32px;
-                height: 32px;
+            .main-content {
+                padding: 120px 15px 30px;
             }
             
-            .logo-circle i {
-                font-size: 14px;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
         @media (max-width: 480px) {
             .navbar {
-                padding: 6px 15px;
+                padding: 0.5rem;
             }
             
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+            
+            .logo-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .glass-card {
+                padding: 1.25rem;
+                margin: 0.5rem;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+
             .nav-links {
                 gap: 8px;
             }
@@ -291,538 +619,102 @@
             .toggle-icon {
                 font-size: 10px;
             }
-            
-            .nav-brand {
-                font-size: 1.1rem;
+        }
+
+        /* Enhanced Dark Mode */
+        body.dark-mode {
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(45deg, #5a4a9c, #4a3a7c, #3a2a5c, #4a3a7c);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.dark-mode .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium Micro-interactions */
+        .hover-lift {
+            transition: var(--transition-smooth);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        .glow-on-hover {
+            transition: var(--transition-smooth);
+        }
+
+        .glow-on-hover:hover {
+            box-shadow: 0 0 20px rgba(138, 109, 233, 0.4);
+        }
+
+        /* Enhanced Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
-        /* Main Content */
-        .main-content {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px 20px;
-        }
-
-        /* Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 35px 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
-            background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
-            z-index: -1;
-            border-radius: 22px;
-            opacity: 0.6;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(138, 109, 233, 0.25);
-        }
-
-        /* Logo Container in Main Card */
-        .main-logo-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .main-logo-circle {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            animation: logoFloat 3s ease-in-out infinite;
-            transition: all 0.3s ease;
-        }
-
-        .main-logo-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(138, 109, 233, 0.4);
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-
-        .main-logo-circle i {
-            color: white;
-            font-size: 28px;
-        }
-
-        .logo-text {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ffffff, #e6e6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo-subtitle {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.9rem;
-            margin-top: 6px;
-            font-weight: 500;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 18px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            border: none;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            font-size: 15px;
-            transition: all 0.3s ease;
-            border: 1.5px solid transparent;
-            color: white;
-            font-family: inherit;
-        }
-
-        .form-control:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #8a6de9;
-            box-shadow: 0 0 0 3px rgba(138, 109, 233, 0.15);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-control:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 13px;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .password-toggle:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        /* Form Links */
-        .form-links {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 18px 0;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .remember-me:hover {
-            color: #ffd700;
-        }
-
-        /* Round Remember Me Checkbox */
-        .remember-me input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.08);
-            appearance: none;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .remember-me input[type="checkbox"]:hover {
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .remember-me input[type="checkbox"]:checked {
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
-            border-color: #8a6de9;
-        }
-
-        .remember-me input[type="checkbox"]:checked::after {
-            content: "✓";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-        }
-
-        .forgot-password {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .forgot-password::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #ffd700;
-            transition: width 0.3s ease;
-        }
-
-        .forgot-password:hover {
-            color: #ffd700;
-        }
-
-        .forgot-password:hover::before {
-            width: 100%;
-        }
-
-        /* Buttons */
-        .btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #8a6de9, #6a4c9c);
-            color: white;
-            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.4);
-        }
-
-        .btn-loading {
-            position: relative;
-            color: transparent;
-        }
-
-        .btn-loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 18px;
-            height: 18px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Sign Up Section */
-        .signup-section {
-            text-align: center;
-            margin-top: 20px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 13px;
-        }
-
-        .signup-link {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            position: relative;
-        }
-
-        .signup-link::before {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background: #ffd700;
-            transition: width 0.3s ease;
-        }
-
-        .signup-link:hover {
-            color: #ffed4e;
-            transform: translateX(4px);
-        }
-
-        .signup-link:hover::before {
-            width: 100%;
+        /* Focus styles for better accessibility */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
         }
 
         /* Message Box */
         .message {
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 12px;
-            text-align: center;
-            display: none;
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            padding: 12px 18px;
+            border-radius: 10px;
             font-weight: 500;
-            backdrop-filter: blur(10px);
+            z-index: 1001;
+            backdrop-filter: blur(20px);
             animation: slideIn 0.3s ease;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-8px);
+                transform: translateX(100px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
 
         .message.success {
-            background: rgba(46, 125, 50, 0.15);
-            color: #a5d6a7;
-            border: 1px solid rgba(76, 175, 80, 0.25);
-        }
-
-        .message.error {
-            background: rgba(198, 40, 40, 0.15);
-            color: #ef9a9a;
-            border: 1px solid rgba(244, 67, 54, 0.25);
+            background: rgba(46, 125, 50, 0.85);
+            color: white;
         }
 
         .message.info {
-            background: rgba(33, 150, 243, 0.15);
-            color: #90caf9;
-            border: 1px solid rgba(33, 150, 243, 0.25);
-        }
-
-        /* Social Icons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(33, 150, 243, 0.85);
             color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: 1.5px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .social-icon:hover::before {
-            left: 100%;
-        }
-
-        .social-icon.whatsapp { background: rgba(37, 211, 102, 0.25); }
-        .social-icon.telegram { background: rgba(0, 136, 204, 0.25); }
-        .social-icon.facebook { background: rgba(59, 89, 152, 0.25); }
-        .social-icon.instagram { background: rgba(225, 48, 108, 0.25); }
-        .social-icon.email { background: rgba(219, 68, 55, 0.25); }
-
-        .social-icon:hover {
-            transform: translateY(-2px) scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Form Auto-save Indicator */
-        .auto-save-indicator {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            padding: 8px 12px;
-            border-radius: 15px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 11px;
-            display: none;
-            animation: slideIn 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .auto-save-indicator.show {
-            display: block;
-        }
-
-        /* Dark Mode */
-        body.dark-mode {
-            background: linear-gradient(45deg, #5a4a9c, #4a3a7c, #3a2a5c, #4a3a7c);
-            background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
-        }
-
-        /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .loading-spinner {
-            width: 45px;
-            height: 45px;
-            border: 2.5px solid transparent;
-            border-top: 2.5px solid #8a6de9;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        /* Error Message Styles */
-        .error-message {
-            color: #ef9a9a;
-            font-size: 11px;
-            margin-top: 4px;
-            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Navigation Bar -->
+    <!-- Premium Navigation -->
     <nav class="navbar">
-        <!-- Left Side: Logo + Brand Name -->
         <div class="nav-left">
             <div class="logo-container">
                 <div class="logo-circle">
@@ -832,7 +724,6 @@
             </div>
         </div>
 
-        <!-- Center: Navigation Links -->
         <div class="nav-center">
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
@@ -842,9 +733,7 @@
             </div>
         </div>
 
-        <!-- Right Side: Toggles -->
         <div class="nav-controls">
-            <!-- Dark/Light Mode Toggle -->
             <div class="capsule-toggle" id="darkModeToggle">
                 <div class="toggle-track">
                     <div class="toggle-thumb">
@@ -856,7 +745,6 @@
                 </div>
             </div>
             
-            <!-- Language Toggle -->
             <div class="capsule-toggle" id="languageToggle">
                 <div class="toggle-track">
                     <div class="toggle-thumb">
@@ -872,128 +760,90 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Glass Card -->
-        <div class="glass-card">
-            <!-- Logo Container -->
-            <div class="main-logo-container">
-                <div class="main-logo-circle">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <div class="logo-text">PocketHisab</div>
-                <div class="logo-subtitle">Smart Personal Accounting</div>
+        <!-- Premium Hero Section -->
+        <div class="page-header">
+            <h1 class="page-title">Smart Personal Accounting</h1>
+            <p class="page-subtitle">Manage your finances with elegance and precision</p>
+        </div>
+
+        <!-- Premium Feature Grid -->
+        <div class="features-grid">
+            <div class="feature-card hover-lift">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Advanced Dashboard</h3>
+                <p class="feature-description">Real-time financial insights with beautiful visualizations</p>
             </div>
-
-            <!-- Login Form -->
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email or Mobile</label>
-                    <input type="text" id="email" class="form-control" placeholder="Enter your email or mobile" required>
-                    <div class="error-message" id="emailError"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="password-container">
-                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                        <span class="password-toggle" onclick="togglePassword()">👁️</span>
-                    </div>
-                    <div class="error-message" id="passwordError"></div>
-                </div>
-
-                <!-- Remember Me & Forgot Password -->
-                <div class="form-links">
-                    <label class="remember-me">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="forgot-password.html" class="forgot-password" id="forgotPassword">Forgot Password?</a>
-                </div>
-
-                <!-- Login Button -->
-                <button type="submit" class="btn btn-primary" id="loginBtn">Login to Account</button>
-            </form>
-
-            <!-- Sign Up Section -->
-            <div class="signup-section">
-                <span>Don't have an account? </span>
-                <a href="signup.html" class="signup-link" id="signUpLink">
-                    Create Account →
-                </a>
+            
+            <div class="feature-card hover-lift">
+                <div class="feature-icon">💼</div>
+                <h3 class="feature-title">Investment Tracking</h3>
+                <p class="feature-description">Monitor your portfolio with professional-grade tools</p>
             </div>
-
-            <!-- Message Box -->
-            <div id="message" class="message"></div>
-
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="https://wa.me/your-number" class="social-icon whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/your-channel" class="social-icon telegram" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://facebook.com/your-page" class="social-icon facebook" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com/your-profile" class="social-icon instagram" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="mailto:your-email@gmail.com" class="social-icon email">
-                    <i class="far fa-envelope"></i>
-                </a>
+            
+            <div class="feature-card hover-lift">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile First</h3>
+                <p class="feature-description">Seamless experience across all your devices</p>
             </div>
         </div>
-    </div>
 
-    <!-- Auto-save Indicator -->
-    <div class="auto-save-indicator" id="autoSaveIndicator">
-        <i class="fas fa-save"></i> Form data saved
+        <!-- Premium CTA Section -->
+        <div class="cta-section">
+            <div class="glass-card">
+                <h2>Ready to Transform Your Finances?</h2>
+                <p>Join thousands of satisfied users managing their money with elegance</p>
+                <div class="cta-buttons">
+                    <a href="signup.html" class="btn btn-primary glow-on-hover">
+                        <i class="fas fa-rocket"></i> Start Free Trial
+                    </a>
+                    <a href="features.html" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i> View Features
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // Current states
         let isDarkMode = false;
         let isEnglish = true;
-        let autoSaveTimer = null;
-        let formData = {};
 
         // Language texts
         const translations = {
             en: {
-                title: "PocketHisab - Login",
-                home: "Home",
-                features: "Features", 
-                pricing: "Pricing",
-                contact: "Contact",
-                login: "Login to Account",
-                emailPlaceholder: "Enter your email or mobile",
-                passwordPlaceholder: "Enter your password",
-                rememberMe: "Remember me",
-                forgotPassword: "Forgot Password?",
-                noAccount: "Don't have an account?",
-                createAccount: "Create Account →",
-                loginSuccess: "✅ Login successful! Welcome to PocketHisab!",
+                pageTitle: "Smart Personal Accounting",
+                pageSubtitle: "Manage your finances with elegance and precision",
+                feature1Title: "Advanced Dashboard",
+                feature1Desc: "Real-time financial insights with beautiful visualizations",
+                feature2Title: "Investment Tracking", 
+                feature2Desc: "Monitor your portfolio with professional-grade tools",
+                feature3Title: "Mobile First",
+                feature3Desc: "Seamless experience across all your devices",
+                ctaTitle: "Ready to Transform Your Finances?",
+                ctaText: "Join thousands of satisfied users managing their money with elegance",
+                ctaButton1: "Start Free Trial",
+                ctaButton2: "View Features",
                 darkMode: "Dark mode activated",
                 lightMode: "Light mode activated",
                 englishSelected: "English language selected",
                 banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
             },
             bn: {
-                title: "পকেটহিসাব - লগইন",
-                home: "হোম",
-                features: "ফিচারসমূহ",
-                pricing: "মূল্য",
-                contact: "যোগাযোগ", 
-                login: "অ্যাকাউন্টে লগইন করুন",
-                emailPlaceholder: "আপনার ইমেইল বা মোবাইল দিন",
-                passwordPlaceholder: "আপনার পাসওয়ার্ড দিন",
-                rememberMe: "আমাকে মনে রাখুন",
-                forgotPassword: "পাসওয়ার্ড ভুলে গেছেন?",
-                noAccount: "অ্যাকাউন্ট নেই?",
-                createAccount: "অ্যাকাউন্ট তৈরি করুন →",
-                loginSuccess: "✅ লগইন সফল! পকেটহিসাবে স্বাগতম!",
+                pageTitle: "স্মার্ট ব্যক্তিগত অ্যাকাউন্টিং",
+                pageSubtitle: "সুন্দরভাবে এবং সঠিকভাবে আপনার অর্থ ব্যবস্থাপনা করুন",
+                feature1Title: "এডভান্সড ড্যাশবোর্ড",
+                feature1Desc: "সুন্দর ভিজুয়ালাইজেশন সহ রিয়েল-টাইম আর্থিক ইনসাইট",
+                feature2Title: "বিনিয়োগ ট্র্যাকিং",
+                feature2Desc: "পেশাদার-গ্রেড টুলস দিয়ে আপনার পোর্টফোলিও মনিটর করুন",
+                feature3Title: "মোবাইল ফার্স্ট",
+                feature3Desc: "আপনার সমস্ত ডিভাইসে নিরবিচ্ছিন্ন অভিজ্ঞতা",
+                ctaTitle: "আপনার অর্থব্যবস্থা রূপান্তর করতে প্রস্তুত?",
+                ctaText: "সুন্দরভাবে তাদের অর্থ ব্যবস্থাপনা করা হাজার হাজার সন্তুষ্ট ব্যবহারকারীর সাথে যোগ দিন",
+                ctaButton1: "ফ্রি ট্রায়াল শুরু করুন",
+                ctaButton2: "ফিচার দেখুন",
                 darkMode: "ডার্ক মোড সক্রিয় করা হয়েছে",
-                lightMode: "লাইট মোড সক্রিয় করা হয়েছে", 
+                lightMode: "লাইট মোড সক্রিয় করা হয়েছে",
                 englishSelected: "English language selected",
                 banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
             }
@@ -1004,180 +854,54 @@
             const t = translations[lang];
             
             // Update navigation
-            document.querySelector('a[href="index.html"]').textContent = t.home;
-            document.querySelector('a[href="features.html"]').textContent = t.features;
-            document.querySelector('a[href="pricing.html"]').textContent = t.pricing;
-            document.querySelector('a[href="contact.html"]').textContent = t.contact;
+            document.querySelector('a[href="index.html"]').textContent = isEnglish ? "Home" : "হোম";
+            document.querySelector('a[href="features.html"]').textContent = isEnglish ? "Features" : "ফিচারসমূহ";
+            document.querySelector('a[href="pricing.html"]').textContent = isEnglish ? "Pricing" : "মূল্য";
+            document.querySelector('a[href="contact.html"]').textContent = isEnglish ? "Contact" : "যোগাযোগ";
             
-            // Update form labels and placeholders
-            document.querySelector('label[for="email"]').textContent = "ইমেইল বা মোবাইল";
-            document.querySelector('label[for="password"]').textContent = "পাসওয়ার্ড";
-            document.getElementById('email').placeholder = t.emailPlaceholder;
-            document.getElementById('password').placeholder = t.passwordPlaceholder;
+            // Update page content
+            document.querySelector('.page-title').textContent = t.pageTitle;
+            document.querySelector('.page-subtitle').textContent = t.pageSubtitle;
             
-            // Update buttons and links
-            document.querySelector('.remember-me span').textContent = t.rememberMe;
-            document.getElementById('forgotPassword').textContent = t.forgotPassword;
-            document.getElementById('loginBtn').textContent = t.login;
-            document.querySelector('.signup-section span').textContent = t.noAccount + " ";
-            document.getElementById('signUpLink').innerHTML = t.createAccount;
+            // Update features
+            const featureTitles = document.querySelectorAll('.feature-title');
+            const featureDescs = document.querySelectorAll('.feature-description');
+            
+            featureTitles[0].textContent = t.feature1Title;
+            featureTitles[1].textContent = t.feature2Title;
+            featureTitles[2].textContent = t.feature3Title;
+            
+            featureDescs[0].textContent = t.feature1Desc;
+            featureDescs[1].textContent = t.feature2Desc;
+            featureDescs[2].textContent = t.feature3Desc;
+            
+            // Update CTA section
+            const ctaCard = document.querySelector('.cta-section .glass-card');
+            ctaCard.querySelector('h2').textContent = t.ctaTitle;
+            ctaCard.querySelector('p').textContent = t.ctaText;
+            
+            const ctaButtons = ctaCard.querySelectorAll('.btn');
+            ctaButtons[0].innerHTML = `<i class="fas fa-rocket"></i> ${t.ctaButton1}`;
+            ctaButtons[1].innerHTML = `<i class="fas fa-eye"></i> ${t.ctaButton2}`;
             
             // Update page title
-            document.title = t.title;
-        }
-
-        // Initialize form data from localStorage
-        function initializeFormData() {
-            const savedData = localStorage.getItem('loginFormData');
-            if (savedData) {
-                formData = JSON.parse(savedData);
-                document.getElementById('email').value = formData.email || '';
-                document.getElementById('password').value = formData.password || '';
-                document.getElementById('rememberMe').checked = formData.rememberMe || false;
-                
-                if (formData.email || formData.password) {
-                    showMessage('Form data restored from previous session', 'info');
-                }
-            }
-        }
-
-        // Auto-save form data
-        function autoSaveForm() {
-            if (autoSaveTimer) {
-                clearTimeout(autoSaveTimer);
-            }
-            
-            autoSaveTimer = setTimeout(() => {
-                formData = {
-                    email: document.getElementById('email').value,
-                    password: document.getElementById('password').value,
-                    rememberMe: document.getElementById('rememberMe').checked,
-                    timestamp: new Date().getTime()
-                };
-                
-                localStorage.setItem('loginFormData', JSON.stringify(formData));
-                
-                // Show auto-save indicator
-                const indicator = document.getElementById('autoSaveIndicator');
-                indicator.classList.add('show');
-                setTimeout(() => {
-                    indicator.classList.remove('show');
-                }, 2000);
-            }, 1000);
-        }
-
-        // Show loading overlay
-        function showLoading() {
-            document.getElementById('loadingOverlay').classList.add('active');
-        }
-
-        // Hide loading overlay
-        function hideLoading() {
-            document.getElementById('loadingOverlay').classList.remove('active');
+            document.title = isEnglish ? "PocketHisab - Premium Personal Accounting" : "পকেটহিসাব - প্রিমিয়াম ব্যক্তিগত অ্যাকাউন্টিং";
         }
 
         // Show message function
         function showMessage(text, type) {
-            const message = document.getElementById('message');
+            // Create temporary message element
+            const message = document.createElement('div');
             message.textContent = text;
             message.className = 'message ' + type;
             message.style.display = 'block';
             
+            document.body.appendChild(message);
+            
             setTimeout(() => {
-                message.style.display = 'none';
-            }, 5000);
+                message.remove();
+            }, 4000);
         }
-
-        // Show error message
-        function showError(field, message) {
-            const errorElement = document.getElementById(field + 'Error');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-
-        // Clear error message
-        function clearError(field) {
-            const errorElement = document.getElementById(field + 'Error');
-            errorElement.textContent = '';
-            errorElement.style.display = 'none';
-        }
-
-        // Validate email/mobile
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const mobileRegex = /^01[3-9]\d{8}$/;
-            return emailRegex.test(email) || mobileRegex.test(email);
-        }
-
-        // Toggle Password Visibility
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleButton = event.target;
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleButton.textContent = '🙈';
-            } else {
-                passwordInput.type = 'password';
-                toggleButton.textContent = '👁️';
-            }
-        }
-
-        // Improved Dark Mode Toggle with Capsule Style
-        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isRightClick = clickX > rect.width / 2;
-            
-            if (isRightClick) {
-                // Dark Mode
-                isDarkMode = true;
-                document.body.classList.add('dark-mode');
-                updateDarkModeToggle(true);
-                const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
-                showMessage(message, 'success');
-                
-                // Save to localStorage and update other pages
-                localStorage.setItem('darkMode', 'true');
-            } else {
-                // Light Mode
-                isDarkMode = false;
-                document.body.classList.remove('dark-mode');
-                updateDarkModeToggle(false);
-                const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
-                showMessage(message, 'success');
-                
-                // Save to localStorage and update other pages
-                localStorage.setItem('darkMode', 'false');
-            }
-        });
-
-        // Improved Language Toggle with Capsule Style
-        document.getElementById('languageToggle').addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isRightClick = clickX > rect.width / 2;
-            
-            if (isRightClick) {
-                // Bangla
-                isEnglish = false;
-                updateLanguage('bn');
-                updateLanguageToggle(false);
-                showMessage(translations.bn.banglaSelected, 'success');
-                
-                // Save to localStorage
-                localStorage.setItem('language', 'bn');
-            } else {
-                // English
-                isEnglish = true;
-                updateLanguage('en');
-                updateLanguageToggle(true);
-                showMessage(translations.en.englishSelected, 'success');
-                
-                // Save to localStorage
-                localStorage.setItem('language', 'en');
-            }
-        });
 
         // Update Toggle Visual State
         function updateDarkModeToggle(isDark) {
@@ -1192,131 +916,73 @@
             thumbs[1].classList.toggle('active', !isEnglish);
         }
 
-        // Login Form Handler
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const loginBtn = document.getElementById('loginBtn');
-            
-            // Clear previous errors
-            clearError('email');
-            clearError('password');
-            
-            // Validate form
-            let isValid = true;
-            
-            if (!email) {
-                const errorText = isEnglish ? 'Email or mobile number is required' : 'ইমেইল বা মোবাইল নম্বর প্রয়োজন';
-                showError('email', errorText);
-                isValid = false;
-            } else if (!validateEmail(email)) {
-                const errorText = isEnglish ? 'Please enter a valid email or mobile number' : 'সঠিক ইমেইল বা মোবাইল নম্বর দিন';
-                showError('email', errorText);
-                isValid = false;
-            }
-            
-            if (!password) {
-                const errorText = isEnglish ? 'Password is required' : 'পাসওয়ার্ড প্রয়োজন';
-                showError('password', errorText);
-                isValid = false;
-            } else if (password.length < 6) {
-                const errorText = isEnglish ? 'Password must be at least 6 characters long' : 'পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে';
-                showError('password', errorText);
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                const errorText = isEnglish ? 'Please fix the errors above' : 'উপরের ভুলগুলি ঠিক করুন';
-                showMessage(errorText, 'error');
-                return;
-            }
-            
-            // Show loading state
-            loginBtn.classList.add('btn-loading');
-            loginBtn.disabled = true;
-            showLoading();
-            
-            // Simulate API call
-            setTimeout(() => {
-                hideLoading();
-                loginBtn.classList.remove('btn-loading');
-                loginBtn.disabled = false;
-                
-                const successText = isEnglish ? translations.en.loginSuccess : translations.bn.loginSuccess;
-                showMessage(successText, 'success');
-                
-                // Clear form data if not remember me
-                if (!document.getElementById('rememberMe').checked) {
-                    localStorage.removeItem('loginFormData');
-                }
-            }, 2000);
-        });
-
-        // Form auto-save event listeners
-        document.getElementById('email').addEventListener('input', autoSaveForm);
-        document.getElementById('password').addEventListener('input', autoSaveForm);
-        document.getElementById('rememberMe').addEventListener('change', autoSaveForm);
-
-        // Real-time validation
-        document.getElementById('email').addEventListener('blur', function() {
-            const email = this.value;
-            if (email && !validateEmail(email)) {
-                const errorText = isEnglish ? 'Please enter a valid email or mobile number' : 'সঠিক ইমেইল বা মোবাইল নম্বর দিন';
-                showError('email', errorText);
-            } else {
-                clearError('email');
-            }
-        });
-
-        document.getElementById('password').addEventListener('blur', function() {
-            const password = this.value;
-            if (password && password.length < 6) {
-                const errorText = isEnglish ? 'Password must be at least 6 characters' : 'পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে';
-                showError('password', errorText);
-            } else {
-                clearError('password');
-            }
-        });
-
-        // Sign Up Link - Direct to Sign Up Page
-        document.getElementById('signUpLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            showLoading();
-            setTimeout(() => {
-                window.location.href = 'signup.html';
-            }, 500);
-        });
-
-        // Forgot Password - Fixed to work properly
-        document.getElementById('forgotPassword').addEventListener('click', function(e) {
-            e.preventDefault();
-            showLoading();
-            setTimeout(() => {
-                window.location.href = 'forgot-password.html';
-            }, 500);
-        });
-
-        // Navigation Links - Fixed to work properly
+        // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === 'pricing.html' || this.getAttribute('href') === 'contact.html' || this.getAttribute('href') === 'features.html') {
+                e.preventDefault();
+                window.location.href = this.getAttribute('href');
+            });
+        });
+
+        // CTA buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
                     e.preventDefault();
-                    showLoading();
-                    setTimeout(() => {
-                        window.location.href = this.getAttribute('href');
-                    }, 500);
+                    window.location.href = this.getAttribute('href');
                 }
             });
         });
 
-        // Add hover effects to all interactive elements
-        document.querySelectorAll('button, a, input, .logo-circle, .social-icon').forEach(element => {
-            element.style.transition = 'all 0.3s ease';
+        // Dark Mode Toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Dark Mode
+                isDarkMode = true;
+                document.body.classList.add('dark-mode');
+                updateDarkModeToggle(true);
+                const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                // Light Mode
+                isDarkMode = false;
+                document.body.classList.remove('dark-mode');
+                updateDarkModeToggle(false);
+                const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'false');
+            }
         });
 
-        // Initialize toggles and form data on page load
+        // Language Toggle
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Bangla
+                isEnglish = false;
+                updateLanguage('bn');
+                updateLanguageToggle(false);
+                showMessage(translations.bn.banglaSelected, 'success');
+                localStorage.setItem('language', 'bn');
+            } else {
+                // English
+                isEnglish = true;
+                updateLanguage('en');
+                updateLanguageToggle(true);
+                showMessage(translations.en.englishSelected, 'success');
+                localStorage.setItem('language', 'en');
+            }
+        });
+
+        // Page loaded successfully
         document.addEventListener('DOMContentLoaded', function() {
             // Load dark mode preference
             const savedDarkMode = localStorage.getItem('darkMode');
@@ -1337,16 +1003,38 @@
             }
             updateLanguageToggle(isEnglish);
             
-            initializeFormData();
+            console.log('🚀 Premium PocketHisab Loaded');
             
-            console.log('🎉 PocketHisab Purple Theme Loaded!');
-            const welcomeText = isEnglish ? 'Welcome to PocketHisab! Ready to login.' : 'পকেটহিসাবে স্বাগতম! লগইন করতে প্রস্তুত।';
+            // Add animation to feature cards on load
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            const welcomeText = isEnglish ? 'Welcome to PocketHisab - Your smart accounting solution!' : 'পকেটহিসাবে স্বাগতম - আপনার স্মার্ট অ্যাকাউন্টিং সমাধান!';
             showMessage(welcomeText, 'info');
         });
 
-        // Handle page unloading to save final form state
-        window.addEventListener('beforeunload', function() {
-            autoSaveForm();
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                updateDarkModeToggle(isDarkMode);
+                const message = isDarkMode ? 
+                    (isEnglish ? translations.en.darkMode : translations.bn.darkMode) :
+                    (isEnglish ? translations.en.lightMode : translations.bn.lightMode);
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', isDarkMode.toString());
+            }
         });
     </script>
 </body>

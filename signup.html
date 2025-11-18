@@ -437,38 +437,6 @@
             font-weight: 600;
         }
 
-        /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .loading-spinner {
-            width: 45px;
-            height: 45px;
-            border: 2.5px solid transparent;
-            border-top: 2.5px solid #8a6de9;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
         /* Error Message Styles */
         .error-message {
             color: #ef9a9a;
@@ -545,11 +513,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-    </div>
-
     <div class="glass-card">
         <!-- Logo -->
         <div class="logo">PocketHisab</div>
@@ -906,16 +869,6 @@
             }, 1000);
         }
 
-        // Show loading overlay
-        function showLoading() {
-            document.getElementById('loadingOverlay').classList.add('active');
-        }
-
-        // Hide loading overlay
-        function hideLoading() {
-            document.getElementById('loadingOverlay').classList.remove('active');
-        }
-
         // Show message function
         function showMessage(text, type) {
             const message = document.getElementById('message');
@@ -1153,11 +1106,9 @@
             // Show loading state
             verifyBtn.classList.add('btn-loading');
             verifyBtn.disabled = true;
-            showLoading();
 
             // Simulate OTP verification
             setTimeout(() => {
-                hideLoading();
                 verifyBtn.classList.remove('btn-loading');
                 verifyBtn.disabled = false;
                 

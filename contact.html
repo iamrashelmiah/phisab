@@ -598,38 +598,6 @@
             background: rgba(255, 255, 255, 0.25);
         }
 
-        /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .loading-spinner {
-            width: 45px;
-            height: 45px;
-            border: 2.5px solid transparent;
-            border-top: 2.5px solid #8a6de9;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
         /* Form Auto-save Indicator */
         .auto-save-indicator {
             position: fixed;
@@ -779,11 +747,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-    </div>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <!-- Left Side: Logo + Brand Name -->
@@ -1071,16 +1034,6 @@
             }, 1000);
         }
 
-        // Show loading overlay
-        function showLoading() {
-            document.getElementById('loadingOverlay').classList.add('active');
-        }
-
-        // Hide loading overlay
-        function hideLoading() {
-            document.getElementById('loadingOverlay').classList.remove('active');
-        }
-
         // Show message function
         function showMessage(text, type) {
             const message = document.getElementById('formMessage');
@@ -1159,14 +1112,12 @@
             // Show loading state
             submitBtn.classList.add('btn-loading');
             submitBtn.disabled = true;
-            showLoading();
             
             // Simulate email sending (in real implementation, use backend API)
             setTimeout(() => {
                 // Reset button
                 submitBtn.classList.remove('btn-loading');
                 submitBtn.disabled = false;
-                hideLoading();
                 
                 // Show success message
                 showMessage(isEnglish ? translations.en.successMessage : translations.bn.successMessage, 'success');
@@ -1236,10 +1187,7 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                showLoading();
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 500);
+                window.location.href = this.getAttribute('href');
             });
         });
 
