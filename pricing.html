@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Pricing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+            overflow-x: hidden;
+            transition: background 1s ease;
+        }
+
+        /* Rainbow Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(138, 109, 233, 0.4);
+        }
+
+        .logo-circle i {
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffd700;
+        }
+
+        /* Toggle Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Capsule Toggle Styles */
+        .capsule-toggle {
+            width: 70px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2px;
+            cursor: pointer;
+            position: relative;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .capsule-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .capsule-toggle:hover::before {
+            left: 100%;
+        }
+
+        .capsule-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .toggle-thumb {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            z-index: 2;
+            border-radius: 18px;
+        }
+
+        .toggle-thumb.active {
+            color: white;
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+        }
+
+        .toggle-icon {
+            font-size: 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Pricing Card */
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.6;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(138, 109, 233, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 2px solid #ffd700;
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pricing-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover .pricing-icon {
+            transform: scale(1.08);
+            box-shadow: 0 6px 18px rgba(138, 109, 233, 0.35);
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 5px;
+        }
+
+        .pricing-period {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-features li:hover {
+            color: #ffd700;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c);
+            color: white;
+            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px;
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.6;
+        }
+
+        .summary-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 18px;
+        }
+
+        .summary-text {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 45px;
+            height: 45px;
+            border: 2.5px solid transparent;
+            border-top: 2.5px solid #8a6de9;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Message Box */
+        .message {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 500;
+            z-index: 1001;
+            backdrop-filter: blur(20px);
+            animation: slideIn 0.3s ease;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.success {
+            background: rgba(46, 125, 50, 0.85);
+            color: white;
+        }
+
+        .message.info {
+            background: rgba(33, 150, 243, 0.85);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 8px 20px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-left {
+                order: 1;
+                flex: 1;
+            }
+            
+            .nav-controls {
+                order: 2;
+                gap: 6px;
+            }
+            
+            .nav-center {
+                order: 3;
+                flex: 1 1 100%;
+                justify-content: center;
+                margin-top: 8px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+            
+            .capsule-toggle {
+                width: 65px;
+                height: 28px;
+            }
+            
+            .nav-brand {
+                font-size: 1.3rem;
+            }
+            
+            .logo-circle {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .logo-circle i {
+                font-size: 14px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .main-content {
+                padding: 120px 15px 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-8px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 6px 15px;
+            }
+            
+            .nav-links {
+                gap: 8px;
+            }
+            
+            .nav-links a {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            
+            .capsule-toggle {
+                width: 60px;
+                height: 26px;
+            }
+            
+            .toggle-icon {
+                font-size: 10px;
+            }
+            
+            .nav-brand {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(45deg, #5a4a9c, #4a3a7c, #3a2a5c, #4a3a7c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.dark-mode .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Left Side: Logo + Brand Name -->
+        <div class="nav-left">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="nav-brand">PocketHisab</div>
+            </div>
+        </div>
+
+        <!-- Center: Navigation Links -->
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html" class="active">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Toggles -->
+        <div class="nav-controls">
+            <!-- Dark/Light Mode Toggle -->
+            <div class="capsule-toggle" id="darkModeToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">☀️</span>
+                    </div>
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">🌙</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Language Toggle -->
+            <div class="capsule-toggle" id="languageToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">EN</span>
+                    </div>
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">BN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title" id="pageTitle">PocketHisab Pricing</h1>
+            <p class="page-subtitle" id="pageSubtitle">Choose the perfect plan for your personal accounting needs</p>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <div class="pricing-icon">💰</div>
+                <h3 class="pricing-title" id="basicTitle">Basic</h3>
+                <div class="pricing-price">৳149</div>
+                <div class="pricing-period" id="basicPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="basicFeature1">300 SMS per month</li>
+                    <li id="basicFeature2">Basic Dashboard</li>
+                    <li id="basicFeature3">Income/Expense Tracking</li>
+                    <li id="basicFeature4">Email Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('basic')" id="basicBtn">Select Basic</button>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="pricing-card popular">
+                <div class="popular-badge" id="popularBadge">Most Popular</div>
+                <div class="pricing-icon">🚀</div>
+                <h3 class="pricing-title" id="standardTitle">Standard</h3>
+                <div class="pricing-price">৳199</div>
+                <div class="pricing-period" id="standardPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="standardFeature1">400 SMS per month</li>
+                    <li id="standardFeature2">Advanced Dashboard</li>
+                    <li id="standardFeature3">Investment Tracking</li>
+                    <li id="standardFeature4">Priority Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('standard')" id="standardBtn">Select Standard</button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="pricing-card">
+                <div class="pricing-icon">👑</div>
+                <h3 class="pricing-title" id="premiumTitle">Premium</h3>
+                <div class="pricing-price">৳249</div>
+                <div class="pricing-period" id="premiumPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="premiumFeature1">500 SMS per month</li>
+                    <li id="premiumFeature2">Full Feature Access</li>
+                    <li id="premiumFeature3">Contract Management</li>
+                    <li id="premiumFeature4">24/7 Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('premium')" id="premiumBtn">Select Premium</button>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2 class="summary-title" id="summaryTitle">Ready to Get Started?</h2>
+            <p class="summary-text" id="summaryText">
+                All plans include our core features with different SMS limits. Start with Basic and upgrade anytime. 
+                30-day money-back guarantee on all plans.
+            </p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="btn btn-primary" id="createAccountBtn">
+                    📝 Create Account
+                </a>
+                <a href="index.html" class="btn btn-secondary" id="loginBtn">
+                    🔐 Login Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current states
+        let isDarkMode = false;
+        let isEnglish = true;
+
+        // Language texts
+        const translations = {
+            en: {
+                pageTitle: "PocketHisab Pricing",
+                pageSubtitle: "Choose the perfect plan for your personal accounting needs",
+                basicTitle: "Basic",
+                basicPeriod: "per month",
+                basicFeature1: "300 SMS per month",
+                basicFeature2: "Basic Dashboard",
+                basicFeature3: "Income/Expense Tracking",
+                basicFeature4: "Email Support",
+                basicBtn: "Select Basic",
+                standardTitle: "Standard",
+                standardPeriod: "per month",
+                standardFeature1: "400 SMS per month",
+                standardFeature2: "Advanced Dashboard",
+                standardFeature3: "Investment Tracking",
+                standardFeature4: "Priority Support",
+                standardBtn: "Select Standard",
+                premiumTitle: "Premium",
+                premiumPeriod: "per month",
+                premiumFeature1: "500 SMS per month",
+                premiumFeature2: "Full Feature Access",
+                premiumFeature3: "Contract Management",
+                premiumFeature4: "24/7 Support",
+                premiumBtn: "Select Premium",
+                popularBadge: "Most Popular",
+                summaryTitle: "Ready to Get Started?",
+                summaryText: "All plans include our core features with different SMS limits. Start with Basic and upgrade anytime. 30-day money-back guarantee on all plans.",
+                createAccountBtn: "📝 Create Account",
+                loginBtn: "🔐 Login Now",
+                darkMode: "Dark mode activated",
+                lightMode: "Light mode activated",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                planSelected: "Plan selected: "
+            },
+            bn: {
+                pageTitle: "পকেটহিসাব মূল্য",
+                pageSubtitle: "আপনার ব্যক্তিগত অ্যাকাউন্টিং চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন",
+                basicTitle: "বেসিক",
+                basicPeriod: "প্রতি মাসে",
+                basicFeature1: "প্রতি মাসে ৩০০ এসএমএস",
+                basicFeature2: "বেসিক ড্যাশবোর্ড",
+                basicFeature3: "আয়/ব্যয় ট্র্যাকিং",
+                basicFeature4: "ইমেইল সাপোর্ট",
+                basicBtn: "বেসিক নির্বাচন করুন",
+                standardTitle: "স্ট্যান্ডার্ড",
+                standardPeriod: "প্রতি মাসে",
+                standardFeature1: "প্রতি মাসে ৪০০ এসএমএস",
+                standardFeature2: "এডভান্সড ড্যাশবোর্ড",
+                standardFeature3: "বিনিয়োগ ট্র্যাকিং",
+                standardFeature4: "অগ্রাধিকার সাপোর্ট",
+                standardBtn: "স্ট্যান্ডার্ড নির্বাচন করুন",
+                premiumTitle: "প্রিমিয়াম",
+                premiumPeriod: "প্রতি মাসে",
+                premiumFeature1: "প্রতি মাসে ৫০০ এসএমএস",
+                premiumFeature2: "সম্পূর্ণ ফিচার এক্সেস",
+                premiumFeature3: "চুক্তি ব্যবস্থাপনা",
+                premiumFeature4: "২৪/৭ সাপোর্ট",
+                premiumBtn: "প্রিমিয়াম নির্বাচন করুন",
+                popularBadge: "সবচেয়ে জনপ্রিয়",
+                summaryTitle: "শুরু করতে প্রস্তুত?",
+                summaryText: "সমস্ত প্ল্যানে আমাদের মূল বৈশিষ্ট্যগুলি বিভিন্ন এসএমএস সীমা সহ অন্তর্ভুক্ত রয়েছে। বেসিক দিয়ে শুরু করুন এবং যেকোনো সময় আপগ্রেড করুন। সমস্ত প্ল্যানে ৩০-দিনের টাকা ফেরত গ্যারান্টি।",
+                createAccountBtn: "📝 অ্যাকাউন্ট তৈরি করুন",
+                loginBtn: "🔐 লগইন করুন",
+                darkMode: "ডার্ক মোড সক্রিয় করা হয়েছে",
+                lightMode: "লাইট মোড সক্রিয় করা হয়েছে",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                planSelected: "প্ল্যান নির্বাচন করা হয়েছে: "
+            }
+        };
+
+        // Update page content based on language
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update navigation
+            document.querySelector('a[href="index.html"]').textContent = isEnglish ? "Home" : "হোম";
+            document.querySelector('a[href="features.html"]').textContent = isEnglish ? "Features" : "ফিচারসমূহ";
+            document.querySelector('a[href="pricing.html"]').textContent = isEnglish ? "Pricing" : "মূল্য";
+            document.querySelector('a[href="contact.html"]').textContent = isEnglish ? "Contact" : "যোগাযোগ";
+            
+            // Update page content
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
+            
+            // Update pricing cards
+            document.getElementById('basicTitle').textContent = t.basicTitle;
+            document.getElementById('basicPeriod').textContent = t.basicPeriod;
+            document.getElementById('basicFeature1').textContent = t.basicFeature1;
+            document.getElementById('basicFeature2').textContent = t.basicFeature2;
+            document.getElementById('basicFeature3').textContent = t.basicFeature3;
+            document.getElementById('basicFeature4').textContent = t.basicFeature4;
+            document.getElementById('basicBtn').textContent = t.basicBtn;
+            
+            document.getElementById('standardTitle').textContent = t.standardTitle;
+            document.getElementById('standardPeriod').textContent = t.standardPeriod;
+            document.getElementById('standardFeature1').textContent = t.standardFeature1;
+            document.getElementById('standardFeature2').textContent = t.standardFeature2;
+            document.getElementById('standardFeature3').textContent = t.standardFeature3;
+            document.getElementById('standardFeature4').textContent = t.standardFeature4;
+            document.getElementById('standardBtn').textContent = t.standardBtn;
+            
+            document.getElementById('premiumTitle').textContent = t.premiumTitle;
+            document.getElementById('premiumPeriod').textContent = t.premiumPeriod;
+            document.getElementById('premiumFeature1').textContent = t.premiumFeature1;
+            document.getElementById('premiumFeature2').textContent = t.premiumFeature2;
+            document.getElementById('premiumFeature3').textContent = t.premiumFeature3;
+            document.getElementById('premiumFeature4').textContent = t.premiumFeature4;
+            document.getElementById('premiumBtn').textContent = t.premiumBtn;
+            
+            document.getElementById('popularBadge').textContent = t.popularBadge;
+            
+            // Update summary section
+            document.getElementById('summaryTitle').textContent = t.summaryTitle;
+            document.getElementById('summaryText').textContent = t.summaryText;
+            document.getElementById('createAccountBtn').innerHTML = t.createAccountBtn;
+            document.getElementById('loginBtn').innerHTML = t.loginBtn;
+            
+            // Update page title
+            document.title = t.pageTitle;
+        }
+
+        // Show loading overlay
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        // Hide loading overlay
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            // Create temporary message element
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 4000);
+        }
+
+        // Select Plan
+        function selectPlan(plan) {
+            const planName = isEnglish ? 
+                (plan === 'basic' ? 'Basic' : plan === 'standard' ? 'Standard' : 'Premium') :
+                (plan === 'basic' ? 'বেসিক' : plan === 'standard' ? 'স্ট্যান্ডার্ড' : 'প্রিমিয়াম');
+            
+            const message = isEnglish ? 
+                `${translations.en.planSelected}${planName}` : 
+                `${translations.bn.planSelected}${planName}`;
+                
+            showMessage(message, 'success');
+            
+            // Save selected plan
+            localStorage.setItem('selectedPlan', plan);
+            
+            // Redirect to signup with plan pre-selected
+            setTimeout(() => {
+                window.location.href = 'signup.html';
+            }, 1500);
+        }
+
+        // Update Toggle Visual State
+        function updateDarkModeToggle(isDark) {
+            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
+
+        function updateLanguageToggle(isEnglish) {
+            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', isEnglish);
+            thumbs[1].classList.toggle('active', !isEnglish);
+        }
+
+        // Navigation Links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLoading();
+                setTimeout(() => {
+                    window.location.href = this.getAttribute('href');
+                }, 500);
+            });
+        });
+
+        // CTA buttons loading state
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
+                    e.preventDefault();
+                    showLoading();
+                    setTimeout(() => {
+                        window.location.href = this.getAttribute('href');
+                    }, 500);
+                }
+            });
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Dark Mode
+                isDarkMode = true;
+                document.body.classList.add('dark-mode');
+                updateDarkModeToggle(true);
+                const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                // Light Mode
+                isDarkMode = false;
+                document.body.classList.remove('dark-mode');
+                updateDarkModeToggle(false);
+                const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        // Language Toggle
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Bangla
+                isEnglish = false;
+                updateLanguage('bn');
+                updateLanguageToggle(false);
+                showMessage(translations.bn.banglaSelected, 'success');
+                localStorage.setItem('language', 'bn');
+            } else {
+                // English
+                isEnglish = true;
+                updateLanguage('en');
+                updateLanguageToggle(true);
+                showMessage(translations.en.englishSelected, 'success');
+                localStorage.setItem('language', 'en');
+            }
+        });
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load dark mode preference
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
+                isDarkMode = true;
+                document.body.classList.add('dark-mode');
+            }
+            updateDarkModeToggle(isDarkMode);
+            
+            // Load language preference
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage === 'bn') {
+                isEnglish = false;
+                updateLanguage('bn');
+            } else {
+                isEnglish = true;
+                updateLanguage('en');
+            }
+            updateLanguageToggle(isEnglish);
+            
+            console.log('🎉 PocketHisab Pricing Page Loaded!');
+            
+            // Add animation to pricing cards on load
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            pricingCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            const welcomeText = isEnglish ? 'Choose the perfect plan for your needs!' : 'আপনার চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন!';
+            showMessage(welcomeText, 'info');
+        });
+
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                updateDarkModeToggle(isDarkMode);
+                const message = isDarkMode ? 
+                    (isEnglish ? translations.en.darkMode : translations.bn.darkMode) :
+                    (isEnglish ? translations.en.lightMode : translations.bn.lightMode);
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', isDarkMode.toString());
+            }
+        });
+    </script>
+</body>
+</html>

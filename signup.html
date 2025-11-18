@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+            padding: 20px;
+            transition: background 1s ease;
+        }
+
+        /* Rainbow Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.6;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(138, 109, 233, 0.25);
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Back to Login */
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .back-link a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #ffd700;
+        }
+
+        .back-link a:hover::before {
+            width: 100%;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #8a6de9;
+            box-shadow: 0 0 0 3px rgba(138, 109, 233, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-control:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Package Selection */
+        .package-selection {
+            margin: 25px 0;
+        }
+
+        .package-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .package-option {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px 10px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .package-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .package-option.selected {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .package-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .package-price {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3px;
+        }
+
+        .package-features {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* OTP Section */
+        .otp-section {
+            display: none;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .otp-input {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1.5px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .otp-input:focus {
+            outline: none;
+            border-color: #8a6de9;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .otp-input:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .otp-timer {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c);
+            color: white;
+            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        /* Message Box */
+        .message {
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 12px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.success {
+            background: rgba(46, 125, 50, 0.15);
+            color: #a5d6a7;
+            border: 1px solid rgba(76, 175, 80, 0.25);
+        }
+
+        .message.error {
+            background: rgba(198, 40, 40, 0.15);
+            color: #ef9a9a;
+            border: 1px solid rgba(244, 67, 54, 0.25);
+        }
+
+        .message.info {
+            background: rgba(33, 150, 243, 0.15);
+            color: #90caf9;
+            border: 1px solid rgba(33, 150, 243, 0.25);
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .step.active .step-circle {
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            color: white;
+        }
+
+        .step-text {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .step.active .step-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 45px;
+            height: 45px;
+            border: 2.5px solid transparent;
+            border-top: 2.5px solid #8a6de9;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: #ef9a9a;
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* Form Auto-save Indicator */
+        .auto-save-indicator {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            padding: 8px 12px;
+            border-radius: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 11px;
+            display: none;
+            animation: slideIn 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .auto-save-indicator.show {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 30px 25px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            body {
+                padding: 15px;
+            }
+            
+            .otp-inputs {
+                gap: 5px;
+            }
+            
+            .otp-input {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(45deg, #5a4a9c, #4a3a7c, #3a2a5c, #4a3a7c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="glass-card">
+        <!-- Logo -->
+        <div class="logo">PocketHisab</div>
+        
+        <!-- Back to Login -->
+        <div class="back-link">
+            <a href="index.html">
+                ← <span id="backText">Back to Login</span>
+            </a>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step active" id="step1">
+                <div class="step-circle">1</div>
+                <div class="step-text" id="step1Text">Personal Info</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-circle">2</div>
+                <div class="step-text" id="step2Text">Package</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-circle">3</div>
+                <div class="step-text" id="step3Text">Verify OTP</div>
+            </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm">
+            <!-- Step 1: Personal Information -->
+            <div class="step-content" id="step1Content">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" id="firstNameLabel">First Name *</label>
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" id="lastNameLabel">Last Name *</label>
+                        <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile" id="mobileLabel">Mobile Number *</label>
+                    <input type="tel" id="mobile" class="form-control" placeholder="01XXXXXXXXX" required>
+                    <div class="error-message" id="mobileError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" id="emailLabel">Email Address *</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" id="passwordLabel">Password *</label>
+                    <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" id="confirmPasswordLabel">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)" id="nextStep1Btn">Next → Choose Package</button>
+            </div>
+
+            <!-- Step 2: Package Selection -->
+            <div class="step-content" id="step2Content" style="display: none;">
+                <div class="package-selection">
+                    <h3 style="text-align: center; margin-bottom: 18px; color: rgba(255, 255, 255, 0.9);" id="packageTitle">Choose Your Package</h3>
+                    
+                    <div class="package-options">
+                        <div class="package-option" onclick="selectPackage('basic')">
+                            <div class="package-name" id="basicName">Basic</div>
+                            <div class="package-price" id="basicPrice">৳149/month</div>
+                            <div class="package-features" id="basicFeatures">300 SMS</div>
+                        </div>
+                        
+                        <div class="package-option" onclick="selectPackage('standard')">
+                            <div class="package-name" id="standardName">Standard</div>
+                            <div class="package-price" id="standardPrice">৳199/month</div>
+                            <div class="package-features" id="standardFeatures">400 SMS</div>
+                        </div>
+                        
+                        <div class="package-option" onclick="selectPackage('premium')">
+                            <div class="package-name" id="premiumName">Premium</div>
+                            <div class="package-price" id="premiumPrice">৳249/month</div>
+                            <div class="package-features" id="premiumFeatures">500 SMS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="text-align: center; display: block; color: rgba(255, 255, 255, 0.9);" id="selectedPackageLabel">Selected Package: <span id="selectedPackageText">None</span></label>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(1)" id="backStep2Btn">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)" id="nextStep2Btn">Next → Verify</button>
+                </div>
+            </div>
+
+            <!-- Step 3: OTP Verification -->
+            <div class="step-content" id="step3Content" style="display: none;">
+                <div class="otp-section" id="otpSection">
+                    <h3 style="text-align: center; margin-bottom: 12px; color: rgba(255, 255, 255, 0.9);" id="verifyTitle">Verify Your Account</h3>
+                    <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 18px;" id="otpMessage">
+                        We've sent OTP codes to your mobile and email
+                    </p>
+                    
+                    <div class="otp-inputs">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 1)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 2)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 3)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 4)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 5)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 6)">
+                    </div>
+                    
+                    <div class="otp-timer" id="otpTimer">
+                        <span id="resendText">Resend OTP in:</span> <span id="timer">02:00</span>
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" onclick="resendOTP()" id="resendOtpBtn"><span id="resendOtpText">Resend OTP</span></button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(2)" id="backStep3Btn">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="verifyOTP()" id="verifyBtn"><span id="verifyBtnText">Verify & Create Account</span></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Message Box -->
+        <div id="message" class="message"></div>
+    </div>
+
+    <!-- Auto-save Indicator -->
+    <div class="auto-save-indicator" id="autoSaveIndicator">
+        <i class="fas fa-save"></i> <span id="saveText">Form data saved</span>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let selectedPackage = '';
+        let otpTimer;
+        let autoSaveTimer = null;
+        let formData = {};
+        let isEnglish = true;
+
+        // Language texts
+        const translations = {
+            en: {
+                backText: "Back to Login",
+                step1Text: "Personal Info",
+                step2Text: "Package",
+                step3Text: "Verify OTP",
+                firstNameLabel: "First Name *",
+                lastNameLabel: "Last Name *",
+                mobileLabel: "Mobile Number *",
+                emailLabel: "Email Address *",
+                passwordLabel: "Password *",
+                confirmPasswordLabel: "Confirm Password *",
+                nextStep1Btn: "Next → Choose Package",
+                packageTitle: "Choose Your Package",
+                basicName: "Basic",
+                basicPrice: "৳149/month",
+                basicFeatures: "300 SMS",
+                standardName: "Standard",
+                standardPrice: "৳199/month",
+                standardFeatures: "400 SMS",
+                premiumName: "Premium",
+                premiumPrice: "৳249/month",
+                premiumFeatures: "500 SMS",
+                selectedPackageLabel: "Selected Package:",
+                backStep2Btn: "← Back",
+                nextStep2Btn: "Next → Verify",
+                verifyTitle: "Verify Your Account",
+                otpMessage: "We've sent OTP codes to your mobile and email",
+                resendText: "Resend OTP in:",
+                resendOtpText: "Resend OTP",
+                backStep3Btn: "← Back",
+                verifyBtnText: "Verify & Create Account",
+                saveText: "Form data saved",
+                firstNameError: "First name is required",
+                lastNameError: "Last name is required",
+                mobileError: "Please enter a valid Bangladeshi mobile number",
+                emailError: "Please enter a valid email address",
+                passwordError: "Password must be at least 6 characters long",
+                confirmPasswordError: "Passwords do not match",
+                formError: "Please fix the errors above",
+                packageError: "Please select a package!",
+                otpError: "Please enter the complete 6-digit OTP!",
+                otpSent: "OTP sent to your mobile and email!",
+                otpResent: "OTP resent successfully!",
+                accountCreated: "Account created successfully! Redirecting...",
+                dataRestored: "Form data restored from previous session",
+                welcome: "Welcome! Let's create your account."
+            },
+            bn: {
+                backText: "লগইনে ফিরে যান",
+                step1Text: "ব্যক্তিগত তথ্য",
+                step2Text: "প্যাকেজ",
+                step3Text: "ওটিপি যাচাই করুন",
+                firstNameLabel: "নামের প্রথম অংশ *",
+                lastNameLabel: "নামের শেষ অংশ *",
+                mobileLabel: "মোবাইল নম্বর *",
+                emailLabel: "ইমেইল ঠিকানা *",
+                passwordLabel: "পাসওয়ার্ড *",
+                confirmPasswordLabel: "পাসওয়ার্ড নিশ্চিত করুন *",
+                nextStep1Btn: "পরবর্তী → প্যাকেজ নির্বাচন করুন",
+                packageTitle: "আপনার প্যাকেজ নির্বাচন করুন",
+                basicName: "বেসিক",
+                basicPrice: "৳149/মাস",
+                basicFeatures: "৩০০ এসএমএস",
+                standardName: "স্ট্যান্ডার্ড",
+                standardPrice: "৳199/মাস",
+                standardFeatures: "৪০০ এসএমএস",
+                premiumName: "প্রিমিয়াম",
+                premiumPrice: "৳249/মাস",
+                premiumFeatures: "৫০০ এসএমএস",
+                selectedPackageLabel: "নির্বাচিত প্যাকেজ:",
+                backStep2Btn: "← পিছনে",
+                nextStep2Btn: "পরবর্তী → যাচাই করুন",
+                verifyTitle: "আপনার অ্যাকাউন্ট যাচাই করুন",
+                otpMessage: "আমরা আপনার মোবাইল এবং ইমেইলে ওটিপি কোড পাঠিয়েছি",
+                resendText: "পুনরায় ওটিপি পাঠান:",
+                resendOtpText: "ওটিপি পুনরায় পাঠান",
+                backStep3Btn: "← পিছনে",
+                verifyBtnText: "যাচাই করুন এবং অ্যাকাউন্ট তৈরি করুন",
+                saveText: "ফর্ম ডেটা সংরক্ষিত হয়েছে",
+                firstNameError: "নামের প্রথম অংশ প্রয়োজন",
+                lastNameError: "নামের শেষ অংশ প্রয়োজন",
+                mobileError: "সঠিক বাংলাদেশি মোবাইল নম্বর দিন",
+                emailError: "সঠিক ইমেইল ঠিকানা দিন",
+                passwordError: "পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে",
+                confirmPasswordError: "পাসওয়ার্ড মেলে না",
+                formError: "উপরের ভুলগুলি ঠিক করুন",
+                packageError: "দয়া করে একটি প্যাকেজ নির্বাচন করুন!",
+                otpError: "সম্পূর্ণ ৬-অঙ্কের ওটিপি দিন!",
+                otpSent: "আপনার মোবাইল এবং ইমেইলে ওটিপি পাঠানো হয়েছে!",
+                otpResent: "ওটিপি পুনরায় সফলভাবে পাঠানো হয়েছে!",
+                accountCreated: "অ্যাকাউন্ট সফলভাবে তৈরি করা হয়েছে! রিডাইরেক্ট করা হচ্ছে...",
+                dataRestored: "পূর্ববর্তী সেশন থেকে ফর্ম ডেটা পুনরুদ্ধার করা হয়েছে",
+                welcome: "স্বাগতম! আসুন আপনার অ্যাকাউন্ট তৈরি করি।"
+            }
+        };
+
+        // Update page content based on language
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            
+            document.getElementById('backText').textContent = t.backText;
+            document.getElementById('step1Text').textContent = t.step1Text;
+            document.getElementById('step2Text').textContent = t.step2Text;
+            document.getElementById('step3Text').textContent = t.step3Text;
+            document.getElementById('firstNameLabel').textContent = t.firstNameLabel;
+            document.getElementById('lastNameLabel').textContent = t.lastNameLabel;
+            document.getElementById('mobileLabel').textContent = t.mobileLabel;
+            document.getElementById('emailLabel').textContent = t.emailLabel;
+            document.getElementById('passwordLabel').textContent = t.passwordLabel;
+            document.getElementById('confirmPasswordLabel').textContent = t.confirmPasswordLabel;
+            document.getElementById('nextStep1Btn').innerHTML = t.nextStep1Btn;
+            document.getElementById('packageTitle').textContent = t.packageTitle;
+            document.getElementById('basicName').textContent = t.basicName;
+            document.getElementById('basicPrice').textContent = t.basicPrice;
+            document.getElementById('basicFeatures').textContent = t.basicFeatures;
+            document.getElementById('standardName').textContent = t.standardName;
+            document.getElementById('standardPrice').textContent = t.standardPrice;
+            document.getElementById('standardFeatures').textContent = t.standardFeatures;
+            document.getElementById('premiumName').textContent = t.premiumName;
+            document.getElementById('premiumPrice').textContent = t.premiumPrice;
+            document.getElementById('premiumFeatures').textContent = t.premiumFeatures;
+            document.getElementById('selectedPackageLabel').innerHTML = t.selectedPackageLabel;
+            document.getElementById('backStep2Btn').innerHTML = t.backStep2Btn;
+            document.getElementById('nextStep2Btn').innerHTML = t.nextStep2Btn;
+            document.getElementById('verifyTitle').textContent = t.verifyTitle;
+            document.getElementById('otpMessage').textContent = t.otpMessage;
+            document.getElementById('resendText').textContent = t.resendText;
+            document.getElementById('resendOtpText').textContent = t.resendOtpText;
+            document.getElementById('backStep3Btn').innerHTML = t.backStep3Btn;
+            document.getElementById('verifyBtnText').textContent = t.verifyBtnText;
+            document.getElementById('saveText').textContent = t.saveText;
+            
+            // Update placeholders
+            document.getElementById('firstName').placeholder = isEnglish ? "Enter first name" : "নামের প্রথম অংশ দিন";
+            document.getElementById('lastName').placeholder = isEnglish ? "Enter last name" : "নামের শেষ অংশ দিন";
+            document.getElementById('mobile').placeholder = isEnglish ? "01XXXXXXXXX" : "০১XXXXXXXXX";
+            document.getElementById('email').placeholder = isEnglish ? "Enter your email" : "আপনার ইমেইল দিন";
+            document.getElementById('password').placeholder = isEnglish ? "Create a password" : "একটি পাসওয়ার্ড তৈরি করুন";
+            document.getElementById('confirmPassword').placeholder = isEnglish ? "Confirm your password" : "আপনার পাসওয়ার্ড নিশ্চিত করুন";
+            
+            // Update selected package text
+            updateSelectedPackageText();
+            
+            // Update page title
+            document.title = isEnglish ? "PocketHisab - Sign Up" : "পকেটহিসাব - সাইন আপ";
+        }
+
+        // Initialize form data from localStorage
+        function initializeFormData() {
+            const savedData = localStorage.getItem('signupFormData');
+            if (savedData) {
+                formData = JSON.parse(savedData);
+                document.getElementById('firstName').value = formData.firstName || '';
+                document.getElementById('lastName').value = formData.lastName || '';
+                document.getElementById('mobile').value = formData.mobile || '';
+                document.getElementById('email').value = formData.email || '';
+                document.getElementById('password').value = formData.password || '';
+                document.getElementById('confirmPassword').value = formData.confirmPassword || '';
+                
+                if (formData.selectedPackage) {
+                    selectedPackage = formData.selectedPackage;
+                    updateSelectedPackageText();
+                }
+                
+                if (formData.firstName || formData.email) {
+                    showMessage(isEnglish ? translations.en.dataRestored : translations.bn.dataRestored, 'info');
+                }
+            }
+        }
+
+        // Auto-save form data
+        function autoSaveForm() {
+            if (autoSaveTimer) {
+                clearTimeout(autoSaveTimer);
+            }
+            
+            autoSaveTimer = setTimeout(() => {
+                formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    mobile: document.getElementById('mobile').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    confirmPassword: document.getElementById('confirmPassword').value,
+                    selectedPackage: selectedPackage,
+                    timestamp: new Date().getTime()
+                };
+                
+                localStorage.setItem('signupFormData', JSON.stringify(formData));
+                
+                // Show auto-save indicator
+                const indicator = document.getElementById('autoSaveIndicator');
+                indicator.classList.add('show');
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, 2000);
+            }, 1000);
+        }
+
+        // Show loading overlay
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        // Hide loading overlay
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show error message
+        function showError(field, message) {
+            const errorElement = document.getElementById(field + 'Error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Clear error message
+        function clearError(field) {
+            const errorElement = document.getElementById(field + 'Error');
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+        }
+
+        // Navigate between steps
+        function nextStep(step) {
+            // Validate current step before proceeding
+            if (step === 2 && !validateStep1()) return;
+            if (step === 3 && !validateStep2()) return;
+
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Remove active class from all steps
+            document.querySelectorAll('.step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+
+            // Show selected step
+            document.getElementById('step' + step + 'Content').style.display = 'block';
+            document.getElementById('step' + step).classList.add('active');
+
+            currentStep = step;
+
+            // If moving to OTP step, start OTP process
+            if (step === 3) {
+                startOTPProcess();
+            }
+        }
+
+        // Validate Step 1 - Personal Information
+        function validateStep1() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Clear previous errors
+            clearError('firstName');
+            clearError('lastName');
+            clearError('mobile');
+            clearError('email');
+            clearError('password');
+            clearError('confirmPassword');
+
+            let isValid = true;
+
+            if (!firstName) {
+                showError('firstName', isEnglish ? translations.en.firstNameError : translations.bn.firstNameError);
+                isValid = false;
+            }
+
+            if (!lastName) {
+                showError('lastName', isEnglish ? translations.en.lastNameError : translations.bn.lastNameError);
+                isValid = false;
+            }
+
+            if (!mobile) {
+                showError('mobile', isEnglish ? translations.en.mobileError : translations.bn.mobileError);
+                isValid = false;
+            } else if (!/^01[3-9]\d{8}$/.test(mobile)) {
+                showError('mobile', isEnglish ? translations.en.mobileError : translations.bn.mobileError);
+                isValid = false;
+            }
+
+            if (!email) {
+                showError('email', isEnglish ? translations.en.emailError : translations.bn.emailError);
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('email', isEnglish ? translations.en.emailError : translations.bn.emailError);
+                isValid = false;
+            }
+
+            if (!password) {
+                showError('password', isEnglish ? translations.en.passwordError : translations.bn.passwordError);
+                isValid = false;
+            } else if (password.length < 6) {
+                showError('password', isEnglish ? translations.en.passwordError : translations.bn.passwordError);
+                isValid = false;
+            }
+
+            if (!confirmPassword) {
+                showError('confirmPassword', isEnglish ? translations.en.confirmPasswordError : translations.bn.confirmPasswordError);
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', isEnglish ? translations.en.confirmPasswordError : translations.bn.confirmPasswordError);
+                isValid = false;
+            }
+
+            if (!isValid) {
+                showMessage(isEnglish ? translations.en.formError : translations.bn.formError, 'error');
+            }
+
+            return isValid;
+        }
+
+        // Validate Step 2 - Package Selection
+        function validateStep2() {
+            if (!selectedPackage) {
+                showMessage(isEnglish ? translations.en.packageError : translations.bn.packageError, 'error');
+                return false;
+            }
+            return true;
+        }
+
+        // Package Selection
+        function selectPackage(packageType) {
+            selectedPackage = packageType;
+            
+            // Remove selected class from all packages
+            document.querySelectorAll('.package-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to chosen package
+            event.target.closest('.package-option').classList.add('selected');
+            
+            // Update selected package text
+            updateSelectedPackageText();
+        }
+
+        // Update selected package text
+        function updateSelectedPackageText() {
+            if (!selectedPackage) {
+                document.getElementById('selectedPackageText').textContent = isEnglish ? "None" : "কোনটিই নয়";
+                return;
+            }
+            
+            const packageNames = {
+                en: {
+                    basic: "Basic",
+                    standard: "Standard", 
+                    premium: "Premium"
+                },
+                bn: {
+                    basic: "বেসিক",
+                    standard: "স্ট্যান্ডার্ড",
+                    premium: "প্রিমিয়াম"
+                }
+            };
+            
+            document.getElementById('selectedPackageText').textContent = 
+                packageNames[isEnglish ? 'en' : 'bn'][selectedPackage];
+        }
+
+        // Start OTP Process
+        function startOTPProcess() {
+            document.getElementById('otpSection').style.display = 'block';
+            startOTPTimer();
+            
+            // Simulate sending OTP
+            showMessage(isEnglish ? translations.en.otpSent : translations.bn.otpSent, 'success');
+        }
+
+        // OTP Timer
+        function startOTPTimer() {
+            let timeLeft = 120; // 2 minutes
+            const timerElement = document.getElementById('timer');
+            
+            clearInterval(otpTimer);
+            
+            otpTimer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    timerElement.textContent = '00:00';
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Move to next OTP input
+        function moveToNext(input, nextIndex) {
+            if (input.value.length === 1) {
+                const nextInput = input.parentElement.querySelector(`.otp-input:nth-child(${nextIndex + 1})`);
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+        }
+
+        // Resend OTP
+        function resendOTP() {
+            startOTPTimer();
+            showMessage(isEnglish ? translations.en.otpResent : translations.bn.otpResent, 'success');
+        }
+
+        // Verify OTP and Create Account
+        function verifyOTP() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            let otp = '';
+            
+            otpInputs.forEach(input => {
+                otp += input.value;
+            });
+            
+            if (otp.length !== 6) {
+                showMessage(isEnglish ? translations.en.otpError : translations.bn.otpError, 'error');
+                return;
+            }
+
+            const verifyBtn = document.getElementById('verifyBtn');
+            
+            // Show loading state
+            verifyBtn.classList.add('btn-loading');
+            verifyBtn.disabled = true;
+            showLoading();
+
+            // Simulate OTP verification
+            setTimeout(() => {
+                hideLoading();
+                verifyBtn.classList.remove('btn-loading');
+                verifyBtn.disabled = false;
+                
+                showMessage(isEnglish ? translations.en.accountCreated : translations.bn.accountCreated, 'success');
+                
+                // Clear saved form data
+                localStorage.removeItem('signupFormData');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 2000);
+        }
+
+        // Form auto-save event listeners
+        document.getElementById('firstName').addEventListener('input', autoSaveForm);
+        document.getElementById('lastName').addEventListener('input', autoSaveForm);
+        document.getElementById('mobile').addEventListener('input', autoSaveForm);
+        document.getElementById('email').addEventListener('input', autoSaveForm);
+        document.getElementById('password').addEventListener('input', autoSaveForm);
+        document.getElementById('confirmPassword').addEventListener('input', autoSaveForm);
+
+        // Real-time validation for Step 1
+        document.getElementById('firstName').addEventListener('blur', function() {
+            if (!this.value) {
+                showError('firstName', isEnglish ? translations.en.firstNameError : translations.bn.firstNameError);
+            } else {
+                clearError('firstName');
+            }
+        });
+
+        document.getElementById('mobile').addEventListener('blur', function() {
+            const mobile = this.value;
+            if (mobile && !/^01[3-9]\d{8}$/.test(mobile)) {
+                showError('mobile', isEnglish ? translations.en.mobileError : translations.bn.mobileError);
+            } else {
+                clearError('mobile');
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('email', isEnglish ? translations.en.emailError : translations.bn.emailError);
+            } else {
+                clearError('email');
+            }
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            const password = this.value;
+            if (password && password.length < 6) {
+                showError('password', isEnglish ? translations.en.passwordError : translations.bn.passwordError);
+            } else {
+                clearError('password');
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            if (confirmPassword && password !== confirmPassword) {
+                showError('confirmPassword', isEnglish ? translations.en.confirmPasswordError : translations.bn.confirmPasswordError);
+            } else {
+                clearError('confirmPassword');
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load language preference
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage === 'bn') {
+                isEnglish = false;
+                updateLanguage('bn');
+            } else {
+                isEnglish = true;
+                updateLanguage('en');
+            }
+            
+            initializeFormData();
+            
+            console.log('🎉 PocketHisab Sign Up Page Loaded!');
+            showMessage(isEnglish ? translations.en.welcome : translations.bn.welcome, 'info');
+        });
+
+        // Handle page unloading to save final form state
+        window.addEventListener('beforeunload', function() {
+            autoSaveForm();
+        });
+
+        // Add keyboard shortcut for language toggle (Ctrl+L)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'l') {
+                e.preventDefault();
+                isEnglish = !isEnglish;
+                updateLanguage(isEnglish ? 'en' : 'bn');
+                localStorage.setItem('language', isEnglish ? 'en' : 'bn');
+                showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+            }
+        });
+    </script>
+</body>
+</html>
