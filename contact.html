@@ -1114,17 +1114,15 @@
                 return;
             }
             
-            // Show loading state
+            // Show loading state on button only
             submitBtn.classList.add('btn-loading');
             submitBtn.disabled = true;
-            showLoading();
             
-            // Simulate email sending (in real implementation, use backend API)
+            // Simulate email sending
             setTimeout(() => {
                 // Reset button
                 submitBtn.classList.remove('btn-loading');
                 submitBtn.disabled = false;
-                hideLoading();
                 
                 // Show success message
                 showMessage(isEnglish ? translations.en.successMessage : translations.bn.successMessage, 'success');
@@ -1133,7 +1131,7 @@
                 document.getElementById('contactForm').reset();
                 localStorage.removeItem('contactFormData');
                 
-                // In real implementation, you would send data to your backend
+                // Log the data (in real app, send to backend)
                 console.log('Email to admin:', {
                     from: email,
                     subject: subject,
@@ -1190,14 +1188,11 @@
             }
         });
 
-        // Navigation Links
+        // Navigation Links - NO LOADER
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-             //   e.preventDefault();
-                showLoading();
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 500);
+                // No loader, direct navigation
+                // e.preventDefault(); // Remove this line for direct navigation
             });
         });
 
