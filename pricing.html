@@ -1154,14 +1154,12 @@
         }
 
         // Navigation Links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                showLoading();
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 500);
-            });
-        });
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // কোন loader নেই, সরাসরি redirect
+        window.location.href = this.getAttribute('href');
+    });
+});
 
         // CTA buttons loading state
         document.querySelectorAll('.btn').forEach(btn => {
