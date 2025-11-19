@@ -1491,7 +1491,16 @@
                 lightMode: "Light mode activated",
                 englishSelected: "English language selected",
                 banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
-                planSelected: "Plan selected: "
+                planSelected: "Plan selected: ",
+                // FAQ translations (EN)
+                faq1Q: "What payment methods do you accept?",
+                faq1A: "We accept all major Bangladeshi payment methods including bKash, Nagad, Rocket, Visa/MasterCard, and bank transfers.",
+                faq2Q: "Can I change my plan later?",
+                faq2A: "Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.",
+                faq3Q: "Is there a free trial available?",
+                faq3A: "We offer a 14-day free trial for all new users. No credit card required to start your trial.",
+                faq4Q: "How secure is my financial data?",
+                faq4A: "We use bank-level encryption and security measures to protect your data. Your financial information is completely safe with us."
             },
             bn: {
                 pageTitle: "পকেটহিসাব মূল্য",
@@ -1535,7 +1544,16 @@
                 lightMode: "লাইট মোড সক্রিয় করা হয়েছে",
                 englishSelected: "English language selected",
                 banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
-                planSelected: "প্ল্যান নির্বাচন করা হয়েছে: "
+                planSelected: "প্ল্যান নির্বাচন করা হয়েছে: ",
+                // FAQ translations (BN)
+                faq1Q: "আপনি কোন পেমেন্ট মাধ্যমগুলো গ্রহণ করেন?",
+                faq1A: "আমরা বিকাশ, নগদ, রকেট, ভিসা/মাস্টারকার্ড এবং ব্যাংক ট্রান্সফার সহ সব প্রধান বাংলাদেশী পেমেন্ট মাধ্যম গ্রহণ করি।",
+                faq2Q: "আমি কি পরে আমার প্ল্যান পরিবর্তন করতে পারি?",
+                faq2A: "হ্যাঁ, আপনি যে কোনও সময় আপনার প্ল্যান আপগ্রেড বা ডাউনগ্রেড করতে পারেন। পরিবর্তনগুলি আপনার পরবর্তী বিলিং চক্রে প্রতিফলিত হবে।",
+                faq3Q: "কি কি-সাথে ফ্রি ট্রায়াল আছে?",
+                faq3A: "নতুন ব্যবহারকারীদের জন্য আমরা ১৪ দিনের ফ্রি ট্রায়াল অফার করি। ট্রায়াল শুরু করতে কোনো ক্রেডিট কার্ড প্রয়োজন নেই।",
+                faq4Q: "আমার আর্থিক ডেটা কতটা নিরাপদ?",
+                faq4A: "আমরা আপনার ডেটা রক্ষার জন্য ব্যাঙ্ক-স্তরের এনক্রিপশন এবং সুরক্ষা ব্যবস্থা ব্যবহার করি। আপনার আর্থিক তথ্য পুরোপুরি নিরাপদ।"
             }
         };
 
@@ -1642,17 +1660,18 @@
         // Update page content based on language
         function updateLanguage(lang) {
             const t = translations[lang];
-            
+            const enSelected = (lang === 'en');
+
             // Update navigation
-            document.querySelector('a[href="index.html"]').textContent = isEnglish ? "Home" : "হোম";
-            document.querySelector('a[href="features.html"]').textContent = isEnglish ? "Features" : "ফিচারসমূহ";
-            document.querySelector('a[href="pricing.html"]').textContent = isEnglish ? "Pricing" : "মূল্য";
-            document.querySelector('a[href="contact.html"]').textContent = isEnglish ? "Contact" : "যোগাযোগ";
-            
+            document.querySelector('a[href="index.html"]').textContent = enSelected ? "Home" : "হোম";
+            document.querySelector('a[href="features.html"]').textContent = enSelected ? "Features" : "ফিচারসমূহ";
+            document.querySelector('a[href="pricing.html"]').textContent = enSelected ? "Pricing" : "মূল্য";
+            document.querySelector('a[href="contact.html"]').textContent = enSelected ? "Contact" : "যোগাযোগ";
+
             // Update page content
             document.getElementById('pageTitle').textContent = t.pageTitle;
             document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
-            
+
             // Update pricing cards
             document.getElementById('basicTitle').textContent = t.basicTitle;
             document.getElementById('basicPeriod').textContent = t.basicPeriod;
@@ -1661,7 +1680,7 @@
             document.getElementById('basicFeature3').textContent = t.basicFeature3;
             document.getElementById('basicFeature4').textContent = t.basicFeature4;
             document.getElementById('basicBtn').textContent = t.basicBtn;
-            
+
             document.getElementById('standardTitle').textContent = t.standardTitle;
             document.getElementById('standardPeriod').textContent = t.standardPeriod;
             document.getElementById('standardFeature1').textContent = t.standardFeature1;
@@ -1669,7 +1688,7 @@
             document.getElementById('standardFeature3').textContent = t.standardFeature3;
             document.getElementById('standardFeature4').textContent = t.standardFeature4;
             document.getElementById('standardBtn').textContent = t.standardBtn;
-            
+
             document.getElementById('premiumTitle').textContent = t.premiumTitle;
             document.getElementById('premiumPeriod').textContent = t.premiumPeriod;
             document.getElementById('premiumFeature1').textContent = t.premiumFeature1;
@@ -1677,9 +1696,19 @@
             document.getElementById('premiumFeature3').textContent = t.premiumFeature3;
             document.getElementById('premiumFeature4').textContent = t.premiumFeature4;
             document.getElementById('premiumBtn').textContent = t.premiumBtn;
-            
+
             document.getElementById('popularBadge').textContent = t.popularBadge;
-            
+
+            // Update FAQ (questions + answers)
+            const faqQs = [t.faq1Q, t.faq2Q, t.faq3Q, t.faq4Q];
+            const faqAs = [t.faq1A, t.faq2A, t.faq3A, t.faq4A];
+            document.querySelectorAll('.faq-question h3').forEach((el, i) => {
+                if (faqQs[i]) el.textContent = faqQs[i];
+            });
+            document.querySelectorAll('.faq-answer p').forEach((el, i) => {
+                if (faqAs[i]) el.textContent = faqAs[i];
+            });
+
             // Update summary section
             document.getElementById('summaryTitle').textContent = t.summaryTitle;
             document.getElementById('summaryText').textContent = t.summaryText;
@@ -1688,7 +1717,7 @@
 
             // Update payment footer content
             updatePaymentFooter(lang);
-            
+
             // Update page title
             document.title = t.pageTitle;
         }
@@ -1814,7 +1843,14 @@
         // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-                window.location.href = this.getAttribute('href');
+                const href = this.getAttribute('href');
+                const currentPage = window.location.href.split('/').pop().split('?')[0].split('#')[0];
+                // If the link points to the current page (e.g. "pricing.html"), prevent reload so loader won't show
+                if (href === currentPage) {
+                    e.preventDefault();
+                    return;
+                }
+                window.location.href = href;
             });
         });
 
