@@ -496,6 +496,34 @@
             color: white;
         }
 
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #8a6de9;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
@@ -619,6 +647,14 @@
         body.dark-mode .nav-links a:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
+        body.dark-mode .feature-card {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .summary-section {
+            background: rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -689,23 +725,23 @@
                 <h3 class="feature-title" id="feature1Title">Dashboard</h3>
                 <p class="feature-description" id="feature1Desc">Comprehensive financial overview with real-time analytics and insights</p>
                 <ul class="feature-highlights">
-                    <li id="feature1Item1">Financial Summary</li>
-                    <li id="feature1Item2">Cash Flow Charts</li>
-                    <li id="feature1Item3">Net Worth Tracker</li>
-                    <li id="feature1Item4">Quick Stats Cards</li>
+                    <li id="feature1Item1">Welcome Message to User</li>
+                    <li id="feature1Item2">Latest Five Upcoming Events</li>
+                    <li id="feature1Item3">Monthly & Yearly Financial Overview</li>
+                    <li id="feature1Item4">Transaction Statistics & Charts</li>
                 </ul>
             </div>
 
-            <!-- Admin Panel -->
+            <!-- Control Panel -->
             <div class="feature-card">
                 <div class="feature-icon">👥</div>
-                <h3 class="feature-title" id="feature2Title">Admin Panel</h3>
+                <h3 class="feature-title" id="feature2Title">Control Panel</h3>
                 <p class="feature-description" id="feature2Desc">Complete system administration and user management</p>
                 <ul class="feature-highlights">
-                    <li id="feature2Item1">User Management</li>
-                    <li id="feature2Item2">System Settings</li>
-                    <li id="feature2Item3">Analytics & Reports</li>
-                    <li id="feature2Item4">Security Settings</li>
+                    <li id="feature2Item1">User Creation with Role Assignment</li>
+                    <li id="feature2Item2">View, Edit & Delete Permissions</li>
+                    <li id="feature2Item3">Data Export as PDF & CSV</li>
+                    <li id="feature2Item4">System Configuration</li>
                 </ul>
             </div>
 
@@ -715,49 +751,153 @@
                 <h3 class="feature-title" id="feature3Title">SMS & Email</h3>
                 <p class="feature-description" id="feature3Desc">Integrated communication system with bulk messaging</p>
                 <ul class="feature-highlights">
-                    <li id="feature3Item1">Bulk SMS & Email</li>
-                    <li id="feature3Item2">Message Templates</li>
-                    <li id="feature3Item3">Auto Greetings</li>
-                    <li id="feature3Item4">Delivery Reports</li>
+                    <li id="feature3Item1">Direct SMS & Email from System</li>
+                    <li id="feature3Item2">Scheduled Messaging for Occasions</li>
+                    <li id="feature3Item3">Customizable Templates</li>
+                    <li id="feature3Item4">Automated Greetings</li>
                 </ul>
             </div>
 
-            <!-- Contract -->
+            <!-- Contact Management -->
             <div class="feature-card">
                 <div class="feature-icon">📑</div>
-                <h3 class="feature-title" id="feature4Title">Contract Management</h3>
-                <p class="feature-description" id="feature4Desc">Digital contract creation and management system</p>
+                <h3 class="feature-title" id="feature4Title">Contact Management</h3>
+                <p class="feature-description" id="feature4Desc">Complete contact management for assets and liabilities</p>
                 <ul class="feature-highlights">
-                    <li id="feature4Item1">Contract Templates</li>
-                    <li id="feature4Item2">E-Signature</li>
-                    <li id="feature4Item3">Renewal Reminders</li>
-                    <li id="feature4Item4">Contract Analytics</li>
+                    <li id="feature4Item1">Contact List for Assets & Liabilities</li>
+                    <li id="feature4Item2">Auto Birthday & Anniversary Messages</li>
+                    <li id="feature4Item3">Contact Photos & ID Storage</li>
+                    <li id="feature4Item4">Quick Contact Reference</li>
                 </ul>
             </div>
 
-            <!-- Investment -->
+            <!-- Investment Management -->
             <div class="feature-card">
                 <div class="feature-icon">💼</div>
-                <h3 class="feature-title" id="feature5Title">Investment Tracking</h3>
+                <h3 class="feature-title" id="feature5Title">Investment Management</h3>
                 <p class="feature-description" id="feature5Desc">Complete investment portfolio management</p>
                 <ul class="feature-highlights">
-                    <li id="feature5Item1">Portfolio Overview</li>
-                    <li id="feature5Item2">ROI Calculator</li>
-                    <li id="feature5Item3">Performance Analysis</li>
-                    <li id="feature5Item4">Investment Types</li>
+                    <li id="feature5Item1">Project-based Investment Categories</li>
+                    <li id="feature5Item2">Category-wise Investment Tracking</li>
+                    <li id="feature5Item3">Individual Project Reports</li>
+                    <li id="feature5Item4">Investment Performance Analysis</li>
                 </ul>
             </div>
 
-            <!-- Income -->
+            <!-- Income Management -->
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
                 <h3 class="feature-title" id="feature6Title">Income Management</h3>
                 <p class="feature-description" id="feature6Desc">Track and manage all income sources efficiently</p>
                 <ul class="feature-highlights">
-                    <li id="feature6Item1">Multiple Income Sources</li>
-                    <li id="feature6Item2">Recurring Income</li>
-                    <li id="feature6Item3">Income Categories</li>
-                    <li id="feature6Item4">Income Reports</li>
+                    <li id="feature6Item1">Custom Income Categories</li>
+                    <li id="feature6Item2">Category-wise Income Tracking</li>
+                    <li id="feature6Item3">Individual Income Reports</li>
+                    <li id="feature6Item4">Income Source Management</li>
+                </ul>
+            </div>
+
+            <!-- Expense Management -->
+            <div class="feature-card">
+                <div class="feature-icon">💸</div>
+                <h3 class="feature-title" id="feature7Title">Expense Management</h3>
+                <p class="feature-description" id="feature7Desc">Track and manage all expenses efficiently</p>
+                <ul class="feature-highlights">
+                    <li id="feature7Item1">Custom Expense Categories</li>
+                    <li id="feature7Item2">Category-wise Expense Tracking</li>
+                    <li id="feature7Item3">Individual Expense Reports</li>
+                    <li id="feature7Item4">Expense Pattern Analysis</li>
+                </ul>
+            </div>
+
+            <!-- Assets Management -->
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3 class="feature-title" id="feature8Title">Assets Management</h3>
+                <p class="feature-description" id="feature8Desc">Complete assets tracking and management</p>
+                <ul class="feature-highlights">
+                    <li id="feature8Item1">Custom Asset Categories</li>
+                    <li id="feature8Item2">Category-wise Asset Tracking</li>
+                    <li id="feature8Item3">SMS/Email Alerts with PDF Vouchers</li>
+                    <li id="feature8Item4">Monthly Automated Reports</li>
+                </ul>
+            </div>
+
+            <!-- Liabilities Management -->
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3 class="feature-title" id="feature9Title">Liabilities Management</h3>
+                <p class="feature-description" id="feature9Desc">Complete liabilities tracking and management</p>
+                <ul class="feature-highlights">
+                    <li id="feature9Item1">Custom Liability Categories</li>
+                    <li id="feature9Item2">Category-wise Liability Tracking</li>
+                    <li id="feature9Item3">SMS/Email Alerts with PDF Vouchers</li>
+                    <li id="feature9Item4">Monthly Automated Reports</li>
+                </ul>
+            </div>
+
+            <!-- Bankbooks Management -->
+            <div class="feature-card">
+                <div class="feature-icon">🏦</div>
+                <h3 class="feature-title" id="feature10Title">Bankbooks Management</h3>
+                <p class="feature-description" id="feature10Desc">Complete bank account management</p>
+                <ul class="feature-highlights">
+                    <li id="feature10Item1">Bank Account List Management</li>
+                    <li id="feature10Item2">All Bank Transactions Overview</li>
+                    <li id="feature10Item3">Scheduled Bank Transfers</li>
+                    <li id="feature10Item4">Individual Bank Account Reports</li>
+                </ul>
+            </div>
+
+            <!-- Payment Management -->
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3 class="feature-title" id="feature11Title">Payment Management</h3>
+                <p class="feature-description" id="feature11Desc">Subscription and payment management</p>
+                <ul class="feature-highlights">
+                    <li id="feature11Item1">Subscription Status Monitoring</li>
+                    <li id="feature11Item2">Payment Processing</li>
+                    <li id="feature11Item3">Payment History Tracking</li>
+                    <li id="feature11Item4">Package Upgrade Options</li>
+                </ul>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 class="feature-title" id="feature12Title">Transaction History</h3>
+                <p class="feature-description" id="feature12Desc">Complete transaction tracking and management</p>
+                <ul class="feature-highlights">
+                    <li id="feature12Item1">Date-wise Transaction Listing</li>
+                    <li id="feature12Item2">Assets & Liabilities Invoice Download</li>
+                    <li id="feature12Item3">Transaction Filtering & Search</li>
+                    <li id="feature12Item4">Transaction Analytics</li>
+                </ul>
+            </div>
+
+            <!-- Accounts -->
+            <div class="feature-card">
+                <div class="feature-icon">📒</div>
+                <h3 class="feature-title" id="feature13Title">Accounts</h3>
+                <p class="feature-description" id="feature13Desc">Complete financial statements and reporting</p>
+                <ul class="feature-highlights">
+                    <li id="feature13Item1">Cash Flow Statement</li>
+                    <li id="feature13Item2">Income & Expense Statement</li>
+                    <li id="feature13Item3">Financial Statement Overview</li>
+                    <li id="feature13Item4">Detailed Financial Reports</li>
+                </ul>
+            </div>
+
+            <!-- Notification -->
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3 class="feature-title" id="feature14Title">Notification</h3>
+                <p class="feature-description" id="feature14Desc">Real-time notification system</p>
+                <ul class="feature-highlights">
+                    <li id="feature14Item1">Real-time Transaction Notifications</li>
+                    <li id="feature14Item2">Telegram Integration</li>
+                    <li id="feature14Item3">Custom Notification Settings</li>
+                    <li id="feature14Item4">Notification History</li>
                 </ul>
             </div>
         </div>
@@ -785,47 +925,95 @@
         let isDarkMode = false;
         let isEnglish = true;
 
-        // Language texts
+        // Language texts - English version remains exactly as you provided
         const translations = {
             en: {
                 pageTitle: "PocketHisab Features",
                 pageSubtitle: "Complete personal accounting solution with advanced features for modern financial management",
                 feature1Title: "Dashboard",
                 feature1Desc: "Comprehensive financial overview with real-time analytics and insights",
-                feature1Item1: "Financial Summary",
-                feature1Item2: "Cash Flow Charts", 
-                feature1Item3: "Net Worth Tracker",
-                feature1Item4: "Quick Stats Cards",
-                feature2Title: "Admin Panel",
+                feature1Item1: "Welcome Message to User",
+                feature1Item2: "Latest Five Upcoming Events",
+                feature1Item3: "Monthly & Yearly Financial Overview",
+                feature1Item4: "Transaction Statistics & Charts",
+                feature2Title: "Control Panel",
                 feature2Desc: "Complete system administration and user management",
-                feature2Item1: "User Management",
-                feature2Item2: "System Settings",
-                feature2Item3: "Analytics & Reports",
-                feature2Item4: "Security Settings",
-                feature3Title: "SMS & Email", 
+                feature2Item1: "User Creation with Role Assignment",
+                feature2Item2: "View, Edit & Delete Permissions",
+                feature2Item3: "Data Export as PDF & CSV",
+                feature2Item4: "System Configuration",
+                feature3Title: "SMS & Email",
                 feature3Desc: "Integrated communication system with bulk messaging",
-                feature3Item1: "Bulk SMS & Email",
-                feature3Item2: "Message Templates",
-                feature3Item3: "Auto Greetings",
-                feature3Item4: "Delivery Reports",
-                feature4Title: "Contract Management",
-                feature4Desc: "Digital contract creation and management system",
-                feature4Item1: "Contract Templates",
-                feature4Item2: "E-Signature",
-                feature4Item3: "Renewal Reminders", 
-                feature4Item4: "Contract Analytics",
-                feature5Title: "Investment Tracking",
+                feature3Item1: "Direct SMS & Email from System",
+                feature3Item2: "Scheduled Messaging for Occasions",
+                feature3Item3: "Customizable Templates",
+                feature3Item4: "Automated Greetings",
+                feature4Title: "Contact Management",
+                feature4Desc: "Complete contact management for assets and liabilities",
+                feature4Item1: "Contact List for Assets & Liabilities",
+                feature4Item2: "Auto Birthday & Anniversary Messages",
+                feature4Item3: "Contact Photos & ID Storage",
+                feature4Item4: "Quick Contact Reference",
+                feature5Title: "Investment Management",
                 feature5Desc: "Complete investment portfolio management",
-                feature5Item1: "Portfolio Overview",
-                feature5Item2: "ROI Calculator",
-                feature5Item3: "Performance Analysis",
-                feature5Item4: "Investment Types",
+                feature5Item1: "Project-based Investment Categories",
+                feature5Item2: "Category-wise Investment Tracking",
+                feature5Item3: "Individual Project Reports",
+                feature5Item4: "Investment Performance Analysis",
                 feature6Title: "Income Management",
-                feature6Desc: "Track and manage all income sources efficiently", 
-                feature6Item1: "Multiple Income Sources",
-                feature6Item2: "Recurring Income",
-                feature6Item3: "Income Categories",
-                feature6Item4: "Income Reports",
+                feature6Desc: "Track and manage all income sources efficiently",
+                feature6Item1: "Custom Income Categories",
+                feature6Item2: "Category-wise Income Tracking",
+                feature6Item3: "Individual Income Reports",
+                feature6Item4: "Income Source Management",
+                feature7Title: "Expense Management",
+                feature7Desc: "Track and manage all expenses efficiently",
+                feature7Item1: "Custom Expense Categories",
+                feature7Item2: "Category-wise Expense Tracking",
+                feature7Item3: "Individual Expense Reports",
+                feature7Item4: "Expense Pattern Analysis",
+                feature8Title: "Assets Management",
+                feature8Desc: "Complete assets tracking and management",
+                feature8Item1: "Custom Asset Categories",
+                feature8Item2: "Category-wise Asset Tracking",
+                feature8Item3: "SMS/Email Alerts with PDF Vouchers",
+                feature8Item4: "Monthly Automated Reports",
+                feature9Title: "Liabilities Management",
+                feature9Desc: "Complete liabilities tracking and management",
+                feature9Item1: "Custom Liability Categories",
+                feature9Item2: "Category-wise Liability Tracking",
+                feature9Item3: "SMS/Email Alerts with PDF Vouchers",
+                feature9Item4: "Monthly Automated Reports",
+                feature10Title: "Bankbooks Management",
+                feature10Desc: "Complete bank account management",
+                feature10Item1: "Bank Account List Management",
+                feature10Item2: "All Bank Transactions Overview",
+                feature10Item3: "Scheduled Bank Transfers",
+                feature10Item4: "Individual Bank Account Reports",
+                feature11Title: "Payment Management",
+                feature11Desc: "Subscription and payment management",
+                feature11Item1: "Subscription Status Monitoring",
+                feature11Item2: "Payment Processing",
+                feature11Item3: "Payment History Tracking",
+                feature11Item4: "Package Upgrade Options",
+                feature12Title: "Transaction History",
+                feature12Desc: "Complete transaction tracking and management",
+                feature12Item1: "Date-wise Transaction Listing",
+                feature12Item2: "Assets & Liabilities Invoice Download",
+                feature12Item3: "Transaction Filtering & Search",
+                feature12Item4: "Transaction Analytics",
+                feature13Title: "Accounts",
+                feature13Desc: "Complete financial statements and reporting",
+                feature13Item1: "Cash Flow Statement",
+                feature13Item2: "Income & Expense Statement",
+                feature13Item3: "Financial Statement Overview",
+                feature13Item4: "Detailed Financial Reports",
+                feature14Title: "Notification",
+                feature14Desc: "Real-time notification system",
+                feature14Item1: "Real-time Transaction Notifications",
+                feature14Item2: "Telegram Integration",
+                feature14Item3: "Custom Notification Settings",
+                feature14Item4: "Notification History",
                 summaryTitle: "Ready to Get Started?",
                 summaryText: "PocketHisab offers a complete personal accounting solution with all the features you need for modern financial management. From basic income-expense tracking to advanced investment management and automated communications - we've got you covered.",
                 createAccountBtn: "📝 Create Account",
@@ -840,40 +1028,88 @@
                 pageSubtitle: "আধুনিক আর্থিক ব্যবস্থাপনার জন্য সম্পূর্ণ ব্যক্তিগত অ্যাকাউন্টিং সমাধান",
                 feature1Title: "ড্যাশবোর্ড",
                 feature1Desc: "রিয়েল-টাইম অ্যানালিটিক্স এবং ইনসাইট সহ সম্পূর্ণ আর্থিক ওভারভিউ",
-                feature1Item1: "আর্থিক সারসংক্ষেপ",
-                feature1Item2: "নগদ প্রবাহ চার্ট",
-                feature1Item3: "নেট ওয়ার্থ ট্র্যাকার", 
-                feature1Item4: "দ্রুত পরিসংখ্যান কার্ড",
-                feature2Title: "অ্যাডমিন প্যানেল",
+                feature1Item1: "ব্যবহারকারীর জন্য স্বাগতম বার্তা",
+                feature1Item2: "সর্বশেষ পাঁচটি আসন্ন ইভেন্ট",
+                feature1Item3: "মাসিক ও বার্ষিক আর্থিক ওভারভিউ",
+                feature1Item4: "লেনদেন পরিসংখ্যান ও চার্ট",
+                feature2Title: "কন্ট্রোল প্যানেল",
                 feature2Desc: "সম্পূর্ণ সিস্টেম অ্যাডমিনিস্ট্রেশন এবং ব্যবহারকারী ব্যবস্থাপনা",
-                feature2Item1: "ব্যবহারকারী ব্যবস্থাপনা",
-                feature2Item2: "সিস্টেম সেটিংস",
-                feature2Item3: "বিশ্লেষণ ও রিপোর্ট",
-                feature2Item4: "সুরক্ষা সেটিংস",
+                feature2Item1: "রোল অ্যাসাইনমেন্ট সহ ব্যবহারকারী তৈরি",
+                feature2Item2: "দেখুন, সম্পাদনা ও মুছার অনুমতি",
+                feature2Item3: "পিডিএফ ও সিএসভি হিসাবে ডেটা এক্সপোর্ট",
+                feature2Item4: "সিস্টেম কনফিগারেশন",
                 feature3Title: "এসএমএস ও ইমেইল",
                 feature3Desc: "বাল্ক মেসেজিং সহ সমন্বিত যোগাযোগ সিস্টেম",
-                feature3Item1: "বাল্ক এসএমএস ও ইমেইল",
-                feature3Item2: "মেসেজ টেমপ্লেট",
-                feature3Item3: "স্বয়ংক্রিয় শুভেচ্ছা",
-                feature3Item4: "ডেলিভারি রিপোর্ট",
-                feature4Title: "চুক্তি ব্যবস্থাপনা",
-                feature4Desc: "ডিজিটাল চুক্তি তৈরি এবং ব্যবস্থাপনা সিস্টেম",
-                feature4Item1: "চুক্তি টেমপ্লেট",
-                feature4Item2: "ই-স্বাক্ষর",
-                feature4Item3: "নবায়ন অনুস্মারক",
-                feature4Item4: "চুক্তি বিশ্লেষণ",
-                feature5Title: "বিনিয়োগ ট্র্যাকিং",
+                feature3Item1: "সিস্টেম থেকে সরাসরি এসএমএস ও ইমেইল",
+                feature3Item2: "অনুষ্ঠানের জন্য নির্ধারিত মেসেজিং",
+                feature3Item3: "কাস্টমাইজযোগ্য টেমপ্লেট",
+                feature3Item4: "স্বয়ংক্রিয় শুভেচ্ছা বার্তা",
+                feature4Title: "কন্টাক্ট ব্যবস্থাপনা",
+                feature4Desc: "সম্পূর্ণ যোগাযোগ ব্যবস্থাপনা",
+                feature4Item1: "সম্পদ ও দায়ের জন্য যোগাযোগ তালিকা",
+                feature4Item2: "স্বয়ংক্রিয় জন্মদিন ও বার্ষিকী বার্তা",
+                feature4Item3: "যোগাযোগ ফটো ও আইডি স্টোরেজ",
+                feature4Item4: "দ্রুত যোগাযোগ রেফারেন্স",
+                feature5Title: "বিনিয়োগ ব্যবস্থাপনা",
                 feature5Desc: "সম্পূর্ণ বিনিয়োগ পোর্টফোলিও ব্যবস্থাপনা",
-                feature5Item1: "পোর্টফোলিও ওভারভিউ",
-                feature5Item2: "আরওআই ক্যালকুলেটর",
-                feature5Item3: "পারফরম্যান্স বিশ্লেষণ",
-                feature5Item4: "বিনিয়োগের ধরন",
+                feature5Item1: "প্রকল্প-ভিত্তিক বিনিয়োগ বিভাগ",
+                feature5Item2: "বিভাগ-ভিত্তিক বিনিয়োগ ট্র্যাকিং",
+                feature5Item3: "স্বতন্ত্র প্রকল্প রিপোর্ট",
+                feature5Item4: "বিনিয়োগ পারফরম্যান্স বিশ্লেষণ",
                 feature6Title: "আয় ব্যবস্থাপনা",
                 feature6Desc: "সমস্ত আয়ের উৎস দক্ষতার সাথে ট্র্যাক এবং পরিচালনা করুন",
-                feature6Item1: "একাধিক আয়ের উৎস",
-                feature6Item2: "পুনরাবৃত্ত আয়",
-                feature6Item3: "আয়ের বিভাগ",
-                feature6Item4: "আয়ের রিপোর্ট",
+                feature6Item1: "কাস্টম আয় বিভাগ",
+                feature6Item2: "বিভাগ-ভিত্তিক আয় ট্র্যাকিং",
+                feature6Item3: "স্বতন্ত্র আয় রিপোর্ট",
+                feature6Item4: "আয়ের উৎস ব্যবস্থাপনা",
+                feature7Title: "ব্যয় ব্যবস্থাপনা",
+                feature7Desc: "সমস্ত ব্যয় দক্ষতার সাথে ট্র্যাক এবং পরিচালনা করুন",
+                feature7Item1: "কাস্টম ব্যয় বিভাগ",
+                feature7Item2: "বিভাগ-ভিত্তিক ব্যয় ট্র্যাকিং",
+                feature7Item3: "স্বতন্ত্র ব্যয় রিপোর্ট",
+                feature7Item4: "ব্যয় প্যাটার্ন বিশ্লেষণ",
+                feature8Title: "সম্পদ ব্যবস্থাপনা",
+                feature8Desc: "সম্পূর্ণ সম্পদ ট্র্যাকিং এবং ব্যবস্থাপনা",
+                feature8Item1: "কাস্টম সম্পদ বিভাগ",
+                feature8Item2: "বিভাগ-ভিত্তিক সম্পদ ট্র্যাকিং",
+                feature8Item3: "পিডিএফ ভাউচার সহ এসএমএস/ইমেইল অ্যালার্ট",
+                feature8Item4: "মাসিক স্বয়ংক্রিয় রিপোর্ট",
+                feature9Title: "দায় ব্যবস্থাপনা",
+                feature9Desc: "সম্পূর্ণ দায় ট্র্যাকিং এবং ব্যবস্থাপনা",
+                feature9Item1: "কাস্টম দায় বিভাগ",
+                feature9Item2: "বিভাগ-ভিত্তিক দায় ট্র্যাকিং",
+                feature9Item3: "পিডিএফ ভাউচার সহ এসএমএস/ইমেইল অ্যালার্ট",
+                feature9Item4: "মাসিক স্বয়ংক্রিয় রিপোর্ট",
+                feature10Title: "ব্যাংকবুক ব্যবস্থাপনা",
+                feature10Desc: "সম্পূর্ণ ব্যাংক অ্যাকাউন্ট ব্যবস্থাপনা",
+                feature10Item1: "ব্যাংক অ্যাকাউন্ট তালিকা ব্যবস্থাপনা",
+                feature10Item2: "সমস্ত ব্যাংক লেনদেন ওভারভিউ",
+                feature10Item3: "নির্ধারিত ব্যাংক ট্রান্সফার",
+                feature10Item4: "স্বতন্ত্র ব্যাংক অ্যাকাউন্ট রিপোর্ট",
+                feature11Title: "পেমেন্ট ব্যবস্থাপনা",
+                feature11Desc: "সাবস্ক্রিপশন এবং পেমেন্ট ব্যবস্থাপনা",
+                feature11Item1: "সাবস্ক্রিপশন স্ট্যাটাস মনিটরিং",
+                feature11Item2: "পেমেন্ট প্রসেসিং",
+                feature11Item3: "পেমেন্ট হিস্ট্রি ট্র্যাকিং",
+                feature11Item4: "প্যাকেজ আপগ্রেড অপশন",
+                feature12Title: "লেনদেন ইতিহাস",
+                feature12Desc: "সম্পূর্ণ লেনদেন ট্র্যাকিং এবং ব্যবস্থাপনা",
+                feature12Item1: "তারিখ-ভিত্তিক লেনদেন তালিকা",
+                feature12Item2: "সম্পদ ও দায়ের ইনভয়েস ডাউনলোড",
+                feature12Item3: "লেনদেন ফিল্টারিং ও সার্চ",
+                feature12Item4: "লেনদেন বিশ্লেষণ",
+                feature13Title: "অ্যাকাউন্টস",
+                feature13Desc: "সম্পূর্ণ আর্থিক বিবৃতি এবং রিপোর্টিং",
+                feature13Item1: "নগদ প্রবাহ বিবৃতি",
+                feature13Item2: "আয় ও ব্যয় বিবৃতি",
+                feature13Item3: "আর্থিক বিবৃতি ওভারভিউ",
+                feature13Item4: "বিস্তারিত আর্থিক রিপোর্ট",
+                feature14Title: "নোটিফিকেশন",
+                feature14Desc: "রিয়েল-টাইম নোটিফিকেশন সিস্টেম",
+                feature14Item1: "রিয়েল-টাইম লেনদেন নোটিফিকেশন",
+                feature14Item2: "টেলিগ্রাম ইন্টিগ্রেশন",
+                feature14Item3: "কাস্টম নোটিফিকেশন সেটিংস",
+                feature14Item4: "নোটিফিকেশন ইতিহাস",
                 summaryTitle: "শুরু করতে প্রস্তুত?",
                 summaryText: "পকেটহিসাব আধুনিক আর্থিক ব্যবস্থাপনার জন্য আপনার প্রয়োজনীয় সমস্ত ফিচার সহ একটি সম্পূর্ণ ব্যক্তিগত অ্যাকাউন্টিং সমাধান অফার করে। বেসিক আয়-ব্যয় ট্র্যাকিং থেকে উন্নত বিনিয়োগ ব্যবস্থাপনা এবং স্বয়ংক্রিয় যোগাযোগ পর্যন্ত - আমরা আপনাকে কভার করেছি।",
                 createAccountBtn: "📝 অ্যাকাউন্ট তৈরি করুন",
@@ -900,7 +1136,7 @@
             document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
             
             // Update features
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 14; i++) {
                 document.getElementById(`feature${i}Title`).textContent = t[`feature${i}Title`];
                 document.getElementById(`feature${i}Desc`).textContent = t[`feature${i}Desc`];
                 for (let j = 1; j <= 4; j++) {
@@ -931,6 +1167,18 @@
             setTimeout(() => {
                 message.remove();
             }, 4000);
+        }
+
+        // Show loading function
+        function showLoading() {
+            const loading = document.createElement('div');
+            loading.className = 'loading';
+            loading.innerHTML = '<div class="loading-spinner"></div>';
+            document.body.appendChild(loading);
+            
+            setTimeout(() => {
+                loading.remove();
+            }, 500);
         }
 
         // Toggle Dark Mode
@@ -965,7 +1213,6 @@
         // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-          //      e.preventDefault();
                 showLoading();
                 setTimeout(() => {
                     window.location.href = this.getAttribute('href');
