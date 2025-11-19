@@ -1230,14 +1230,10 @@
             });
         });
 
-        // CTA buttons loading state
+        // CTA buttons - সরাসরি redirect, কোন loader নেই
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                showLoading();
-                setTimeout(() => {
-                    window.location.href = this.getAttribute('href');
-                }, 500);
+                window.location.href = this.getAttribute('href');
             });
         });
 
