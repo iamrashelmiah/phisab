@@ -27,6 +27,131 @@
             animation: gradientAnimation 25s ease infinite;
             overflow-x: hidden;
             transition: background 1s ease;
+            position: relative;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            z-index: 1002;
+            transition: width 0.3s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a6de9, #6a4c9c);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(138, 109, 233, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.4);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #7b5fe2, #5d8de6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Confetti Container */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1003;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            opacity: 0;
+            animation: confettiFall 3s ease-in-out;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
         }
 
         /* Rainbow Background Animation */
@@ -228,10 +353,40 @@
             font-size: 12px;
         }
 
+        /* Currency Converter */
+        /* .currency-converter {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 15px;
+            z-index: 999;
+            min-width: 200px;
+        }
+
+        .currency-converter select,
+        .currency-converter input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .currency-converter select option {
+            background: #5a4a9c;
+            color: white;
+        } */
+
         /* Main Content */
         .main-content {
             min-height: 100vh;
-            padding: 100px 20px 150px; /* Increased bottom padding for footer space */
+            padding: 100px 20px 150px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -260,6 +415,25 @@
             margin: 0 auto;
         }
 
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #ffd700;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ffd700; }
+        }
+
         /* Pricing Grid */
         .pricing-grid {
             display: grid;
@@ -268,14 +442,14 @@
             margin-bottom: 50px;
         }
 
-        /* Pricing Card */
+        /* Pricing Card with 3D Hover */
         .pricing-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 30px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
@@ -283,6 +457,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
+            perspective: 1000px;
         }
 
         .pricing-card::before {
@@ -301,8 +476,8 @@
         }
 
         .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(138, 109, 233, 0.2);
+            transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(138, 109, 233, 0.3);
             border-color: rgba(255, 255, 255, 0.25);
         }
 
@@ -312,9 +487,10 @@
         }
 
         .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-8px);
+            transform: scale(1.05) translateY(-8px) rotateX(5deg);
         }
 
+        /* Badge System */
         .popular-badge {
             position: absolute;
             top: 15px;
@@ -325,6 +501,25 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        .best-value-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .pricing-icon {
@@ -342,7 +537,7 @@
         }
 
         .pricing-card:hover .pricing-icon {
-            transform: scale(1.08);
+            transform: scale(1.08) rotate(5deg);
             box-shadow: 0 6px 18px rgba(138, 109, 233, 0.35);
         }
 
@@ -351,6 +546,10 @@
             font-weight: 700;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .pricing-price {
@@ -358,6 +557,10 @@
             font-weight: 800;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 5px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .pricing-period {
@@ -374,13 +577,14 @@
         .pricing-features li {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 12px;
-            padding-left: 25px;
+            padding-left: 30px;
             position: relative;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .pricing-features li:hover {
             color: #ffd700;
+            transform: translateX(5px);
         }
 
         .pricing-features li:before {
@@ -389,6 +593,7 @@
             left: 0;
             color: #ffd700;
             font-weight: bold;
+            font-size: 16px;
         }
 
         /* Buttons */
@@ -449,16 +654,16 @@
 
         /* Summary Section - Capsule Shape */
         .summary-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 50px; /* Capsule shape */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 35px;
-            margin: 50px auto 0; /* Same margin as footer */
+            margin: 50px auto 0;
             text-align: center;
             position: relative;
             overflow: hidden;
-            max-width: 1100px; /* Same as footer */
+            max-width: 1100px;
         }
 
         .summary-section::before {
@@ -472,7 +677,7 @@
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             z-index: -1;
-            border-radius: 52px; /* Match capsule shape */
+            border-radius: 52px;
             opacity: 0.6;
         }
 
@@ -498,17 +703,84 @@
             flex-wrap: wrap;
         }
 
+        /* FAQ Section */
+        .faq-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px;
+            margin: 50px auto 0;
+            max-width: 1100px;
+        }
+
+        .faq-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
         /* Footer Payment Section */
         .footer-section {
             position: relative;
             width: calc(100% - 80px);
             max-width: 1100px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50px;
             padding: 15px 20px;
-            margin: 50px auto 30px; /* Same margin as summary section */
+            margin: 50px auto 30px;
             overflow: hidden;
         }
 
@@ -589,6 +861,28 @@
             text-align: center;
         }
 
+        /* Payment Security Badges */
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         /* Message Box */
         .message {
             position: fixed;
@@ -634,6 +928,14 @@
             .card-visible {
                 opacity: 1;
                 transform: translateY(0);
+            }
+
+            .currency-converter {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 20px auto;
+                max-width: 300px;
             }
         }
 
@@ -758,6 +1060,14 @@
                 padding: 25px;
                 margin: 40px auto 0;
             }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -864,9 +1174,33 @@
             background: rgba(0, 0, 0, 0.2);
             border-color: rgba(255, 255, 255, 0.1);
         }
+
+        body.dark-mode .faq-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -923,22 +1257,23 @@
         <!-- Page Header -->
         <div class="page-header">
             <h1 class="page-title" id="pageTitle">PocketHisab Pricing</h1>
-            <p class="page-subtitle" id="pageSubtitle">Choose the perfect plan for your personal accounting needs</p>
+            <p class="page-subtitle typewriter" id="pageSubtitle">Choose the perfect plan for your personal accounting needs</p>
         </div>
 
         <!-- Pricing Grid -->
         <div class="pricing-grid">
             <!-- Basic Plan -->
             <div class="pricing-card">
+                <div class="best-value-badge">Best for Starters</div>
                 <div class="pricing-icon">💰</div>
                 <h3 class="pricing-title" id="basicTitle">Basic</h3>
-                <div class="pricing-price">৳149</div>
+                <div class="pricing-price" id="basicPrice">৳149</div>
                 <div class="pricing-period" id="basicPeriod">per month</div>
                 <ul class="pricing-features">
-                    <li id="basicFeature1">300 SMS per month</li>
-                    <li id="basicFeature2">Basic Dashboard</li>
-                    <li id="basicFeature3">Income/Expense Tracking</li>
-                    <li id="basicFeature4">Email Support</li>
+                    <li id="basicFeature1">📱 300 SMS per month</li>
+                    <li id="basicFeature2">📊 Basic Dashboard</li>
+                    <li id="basicFeature3">💳 Income/Expense Tracking</li>
+                    <li id="basicFeature4">📧 Email Support</li>
                 </ul>
                 <button class="btn btn-primary" onclick="selectPlan('basic')" id="basicBtn">Select Basic</button>
             </div>
@@ -948,30 +1283,72 @@
                 <div class="popular-badge" id="popularBadge">Most Popular</div>
                 <div class="pricing-icon">🚀</div>
                 <h3 class="pricing-title" id="standardTitle">Standard</h3>
-                <div class="pricing-price">৳199</div>
+                <div class="pricing-price" id="standardPrice">৳199</div>
                 <div class="pricing-period" id="standardPeriod">per month</div>
                 <ul class="pricing-features">
-                    <li id="standardFeature1">400 SMS per month</li>
-                    <li id="standardFeature2">Advanced Dashboard</li>
-                    <li id="standardFeature3">Investment Tracking</li>
-                    <li id="standardFeature4">Priority Support</li>
+                    <li id="standardFeature1">📱 400 SMS per month</li>
+                    <li id="standardFeature2">📈 Advanced Dashboard</li>
+                    <li id="standardFeature3">📈 Investment Tracking</li>
+                    <li id="standardFeature4">⚡ Priority Support</li>
                 </ul>
                 <button class="btn btn-primary" onclick="selectPlan('standard')" id="standardBtn">Select Standard</button>
             </div>
 
             <!-- Premium Plan -->
             <div class="pricing-card">
+                <div class="best-value-badge">Ultimate Features</div>
                 <div class="pricing-icon">👑</div>
                 <h3 class="pricing-title" id="premiumTitle">Premium</h3>
-                <div class="pricing-price">৳249</div>
+                <div class="pricing-price" id="premiumPrice">৳249</div>
                 <div class="pricing-period" id="premiumPeriod">per month</div>
                 <ul class="pricing-features">
-                    <li id="premiumFeature1">500 SMS per month</li>
-                    <li id="premiumFeature2">Full Feature Access</li>
-                    <li id="premiumFeature3">Contract Management</li>
-                    <li id="premiumFeature4">24/7 Support</li>
+                    <li id="premiumFeature1">📱 500 SMS per month</li>
+                    <li id="premiumFeature2">🎯 Full Feature Access</li>
+                    <li id="premiumFeature3">📑 Contract Management</li>
+                    <li id="premiumFeature4">🕒 24/7 Support</li>
                 </ul>
                 <button class="btn btn-primary" onclick="selectPlan('premium')" id="premiumBtn">Select Premium</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What payment methods do you accept?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major Bangladeshi payment methods including bKash, Nagad, Rocket, Visa/MasterCard, and bank transfers.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I change my plan later?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there a free trial available?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 14-day free trial for all new users. No credit card required to start your trial.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How secure is my financial data?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We use bank-level encryption and security measures to protect your data. Your financial information is completely safe with us.</p>
+                </div>
             </div>
         </div>
 
@@ -989,6 +1366,22 @@
                 <a href="index.html" class="btn btn-secondary" id="loginBtn">
                     🔐 Login Now
                 </a>
+            </div>
+            
+            <!-- Security Badges -->
+            <div class="security-badges">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Bank-Level Security</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>256-bit Encryption</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>PCI DSS Compliant</span>
+                </div>
             </div>
         </div>
 
@@ -1053,7 +1446,7 @@
         // Current states
         let isDarkMode = false;
         let isEnglish = true;
-
+ 
         // Language texts
         const translations = {
             en: {
@@ -1061,24 +1454,24 @@
                 pageSubtitle: "Choose the perfect plan for your personal accounting needs",
                 basicTitle: "Basic",
                 basicPeriod: "per month",
-                basicFeature1: "300 SMS per month",
-                basicFeature2: "Basic Dashboard",
-                basicFeature3: "Income/Expense Tracking",
-                basicFeature4: "Email Support",
+                basicFeature1: "📱 300 SMS per month",
+                basicFeature2: "📊 Basic Dashboard",
+                basicFeature3: "💳 Income/Expense Tracking",
+                basicFeature4: "📧 Email Support",
                 basicBtn: "Select Basic",
                 standardTitle: "Standard",
                 standardPeriod: "per month",
-                standardFeature1: "400 SMS per month",
-                standardFeature2: "Advanced Dashboard",
-                standardFeature3: "Investment Tracking",
-                standardFeature4: "Priority Support",
+                standardFeature1: "📱 400 SMS per month",
+                standardFeature2: "📈 Advanced Dashboard",
+                standardFeature3: "📈 Investment Tracking",
+                standardFeature4: "⚡ Priority Support",
                 standardBtn: "Select Standard",
                 premiumTitle: "Premium",
                 premiumPeriod: "per month",
-                premiumFeature1: "500 SMS per month",
-                premiumFeature2: "Full Feature Access",
-                premiumFeature3: "Contract Management",
-                premiumFeature4: "24/7 Support",
+                premiumFeature1: "📱 500 SMS per month",
+                premiumFeature2: "🎯 Full Feature Access",
+                premiumFeature3: "📑 Contract Management",
+                premiumFeature4: "🕒 24/7 Support",
                 premiumBtn: "Select Premium",
                 popularBadge: "Most Popular",
                 summaryTitle: "Ready to Get Started?",
@@ -1105,24 +1498,24 @@
                 pageSubtitle: "আপনার ব্যক্তিগত অ্যাকাউন্টিং চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন",
                 basicTitle: "বেসিক",
                 basicPeriod: "প্রতি মাসে",
-                basicFeature1: "প্রতি মাসে ৩০০ এসএমএস",
-                basicFeature2: "বেসিক ড্যাশবোর্ড",
-                basicFeature3: "আয়/ব্যয় ট্র্যাকিং",
-                basicFeature4: "ইমেইল সাপোর্ট",
+                basicFeature1: "📱 প্রতি মাসে ৩০০ এসএমএস",
+                basicFeature2: "📊 বেসিক ড্যাশবোর্ড",
+                basicFeature3: "💳 আয়/ব্যয় ট্র্যাকিং",
+                basicFeature4: "📧 ইমেইল সাপোর্ট",
                 basicBtn: "বেসিক নির্বাচন করুন",
                 standardTitle: "স্ট্যান্ডার্ড",
                 standardPeriod: "প্রতি মাসে",
-                standardFeature1: "প্রতি মাসে ৪০০ এসএমএস",
-                standardFeature2: "এডভান্সড ড্যাশবোর্ড",
-                standardFeature3: "বিনিয়োগ ট্র্যাকিং",
-                standardFeature4: "অগ্রাধিকার সাপোর্ট",
+                standardFeature1: "📱 প্রতি মাসে ৪০০ এসএমএস",
+                standardFeature2: "📈 এডভান্সড ড্যাশবোর্ড",
+                standardFeature3: "📈 বিনিয়োগ ট্র্যাকিং",
+                standardFeature4: "⚡ অগ্রাধিকার সাপোর্ট",
                 standardBtn: "স্ট্যান্ডার্ড নির্বাচন করুন",
                 premiumTitle: "প্রিমিয়াম",
                 premiumPeriod: "প্রতি মাসে",
-                premiumFeature1: "প্রতি মাসে ৫০০ এসএমএস",
-                premiumFeature2: "সম্পূর্ণ ফিচার এক্সেস",
-                premiumFeature3: "চুক্তি ব্যবস্থাপনা",
-                premiumFeature4: "২৪/৭ সাপোর্ট",
+                premiumFeature1: "📱 প্রতি মাসে ৫০০ এসএমএস",
+                premiumFeature2: "🎯 সম্পূর্ণ ফিচার এক্সেস",
+                premiumFeature3: "📑 চুক্তি ব্যবস্থাপনা",
+                premiumFeature4: "🕒 ২৪/৭ সাপোর্ট",
                 premiumBtn: "প্রিমিয়াম নির্বাচন করুন",
                 popularBadge: "সবচেয়ে জনপ্রিয়",
                 summaryTitle: "শুরু করতে প্রস্তুত?",
@@ -1171,6 +1564,80 @@
                 paymentNote: "সমস্ত প্রধান বাংলাদেশী পেমেন্ট মাধ্যম সমর্থিত"
             }
         };
+
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 10;
+                const animationDelay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Update currency prices
+        function updateCurrencyPrices() {
+            const prices = {
+                'basic': 149,
+                'standard': 199,
+                'premium': 249
+            };
+            
+            Object.keys(prices).forEach(plan => {
+                const priceElement = document.getElementById(`${plan}Price`);
+                if (priceElement) {
+                    const convertedPrice = prices[plan] * exchangeRates['BDT'][currentCurrency];
+                    priceElement.textContent = `${currencySymbols[currentCurrency]}${convertedPrice.toFixed(0)}`;
+                }
+            });
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            confettiContainer.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const animationDelay = Math.random() * 2;
+                const size = Math.random() * 10 + 5;
+                const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = `${left}%`;
+                confetti.style.animationDelay = `${animationDelay}s`;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.background = color;
+                
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 3000);
+        }
 
         // Update page content based on language
         function updateLanguage(lang) {
@@ -1265,6 +1732,7 @@
                 `${translations.bn.planSelected}${planName}`;
                 
             showMessage(message, 'success');
+            createConfetti();
             
             // Save selected plan
             localStorage.setItem('selectedPlan', plan);
@@ -1301,6 +1769,45 @@
                     card.style.transform = 'translateY(0)';
                     card.classList.add('card-visible');
                 }
+            });
+        }
+
+        // Update scroll progress bar
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        }
+
+        // Show/hide back to top button
+        function toggleBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        // FAQ Accordion
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
             });
         }
 
@@ -1372,8 +1879,27 @@
             }
         });
 
+        // Back to Top Button
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         // Page loaded successfully
         document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading overlay
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Create particles
+            createParticles();
+
             // Load dark mode preference
             const savedDarkMode = localStorage.getItem('darkMode');
             if (savedDarkMode === 'true') {
@@ -1392,16 +1918,23 @@
                 updateLanguage('en');
             }
             updateLanguageToggle(isEnglish);
-            
-            console.log('🎉 PocketHisab Pricing Page Loaded!');
+
+            // Initialize FAQ
+            initFAQ();
             
             // Initial animation for pricing cards
             setTimeout(() => {
                 animateOnScroll();
             }, 300);
 
-            // Add scroll event listener for mobile animation
-            window.addEventListener('scroll', animateOnScroll);
+            // Add event listeners
+            window.addEventListener('scroll', () => {
+                animateOnScroll();
+                updateProgressBar();
+                toggleBackToTop();
+            });
+
+            console.log('🎉 PocketHisab Pricing Page Loaded!');
 
             const welcomeText = isEnglish ? 'Choose the perfect plan for your needs!' : 'আপনার চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন!';
             showMessage(welcomeText, 'info');
