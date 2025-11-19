@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
 
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Body Styles */
         body {
             min-height: 100vh;
@@ -226,7 +231,7 @@
         /* Main Content */
         .main-content {
             min-height: 100vh;
-            padding: 100px 20px 100px;
+            padding: 100px 20px 150px; /* Increased bottom padding for footer space */
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -276,6 +281,8 @@
             overflow: hidden;
             cursor: pointer;
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
         .pricing-card::before {
@@ -440,17 +447,18 @@
             transform: translateY(-2px);
         }
 
-        /* Summary Section */
+        /* Summary Section - Capsule Shape */
         .summary-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-radius: 18px;
+            border-radius: 50px; /* Capsule shape */
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 35px;
-            margin-top: 50px;
+            margin: 50px auto 0; /* Same margin as footer */
             text-align: center;
             position: relative;
             overflow: hidden;
+            max-width: 1100px; /* Same as footer */
         }
 
         .summary-section::before {
@@ -464,7 +472,7 @@
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             z-index: -1;
-            border-radius: 20px;
+            border-radius: 52px; /* Match capsule shape */
             opacity: 0.6;
         }
 
@@ -492,20 +500,16 @@
 
         /* Footer Payment Section */
         .footer-section {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
             width: calc(100% - 80px);
             max-width: 1100px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50px;
-            padding: 12px 20px;
-            z-index: 1000;
+            padding: 15px 20px;
+            margin: 50px auto 30px; /* Same margin as summary section */
             overflow: hidden;
-            margin-top: 0;
         }
 
         .scrolling-payment-methods {
@@ -534,6 +538,26 @@
             min-width: 120px;
             justify-content: center;
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Shining Animation on Hover */
+        .footer-section .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .footer-section .payment-method:hover::before {
+            left: 100%;
         }
 
         .footer-section .payment-method:hover {
@@ -546,12 +570,16 @@
             font-size: 18px;
             width: 24px;
             text-align: center;
+            z-index: 2;
+            position: relative;
         }
 
         .footer-section .payment-name {
             color: rgba(255, 255, 255, 0.9);
             font-weight: 600;
             font-size: 12px;
+            z-index: 2;
+            position: relative;
         }
 
         .footer-section .payment-note {
@@ -595,6 +623,18 @@
         .message.info {
             background: rgba(33, 150, 243, 0.85);
             color: white;
+        }
+
+        /* Scroll Animation for Mobile */
+        @media (max-width: 768px) {
+            .pricing-card {
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            
+            .card-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive Design */
@@ -659,7 +699,7 @@
             }
             
             .main-content {
-                padding: 120px 15px 70px;
+                padding: 120px 15px 100px;
             }
             
             .cta-buttons {
@@ -682,10 +722,10 @@
 
             /* Footer Responsive */
             .footer-section {
-                bottom: 10px;
-                width: calc(100% - 40px);
-                padding: 8px 12px;
-                border-radius: 35px;
+                width: calc(100% - 60px);
+                padding: 12px 15px;
+                border-radius: 40px;
+                margin: 40px auto 25px;
             }
             
             .footer-section .payment-method {
@@ -710,6 +750,13 @@
             .scrolling-payment-methods {
                 gap: 15px;
                 animation: scrollPayment 25s linear infinite;
+            }
+
+            /* Summary Section Responsive */
+            .summary-section {
+                border-radius: 40px;
+                padding: 25px;
+                margin: 40px auto 0;
             }
         }
 
@@ -742,10 +789,10 @@
 
             /* Footer Responsive */
             .footer-section {
-                bottom: 10px;
-                width: calc(100% - 20px);
+                width: calc(100% - 40px);
                 padding: 10px 12px;
                 border-radius: 35px;
+                margin: 30px auto 20px;
             }
             
             .footer-section .payment-method {
@@ -772,6 +819,13 @@
             .scrolling-payment-methods {
                 gap: 12px;
                 animation: scrollPayment 20s linear infinite;
+            }
+
+            /* Summary Section Responsive */
+            .summary-section {
+                border-radius: 35px;
+                padding: 20px;
+                margin: 30px auto 0;
             }
         }
 
@@ -804,6 +858,11 @@
         body.dark-mode .footer-section .payment-method {
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode .summary-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -916,7 +975,7 @@
             </div>
         </div>
 
-        <!-- Summary Section -->
+        <!-- Summary Section - Capsule Shape -->
         <div class="summary-section">
             <h2 class="summary-title" id="summaryTitle">Ready to Get Started?</h2>
             <p class="summary-text" id="summaryText">
@@ -932,62 +991,62 @@
                 </a>
             </div>
         </div>
-    </div>
 
-    <!-- Footer Payment Section -->
-    <div class="footer-section">
-        <div class="scrolling-payment-methods">
-            <div class="payment-method">
-                <div class="payment-icon">💰</div>
-                <div class="payment-name" id="paymentBkash">bKash</div>
+        <!-- Footer Payment Section -->
+        <div class="footer-section">
+            <div class="scrolling-payment-methods">
+                <div class="payment-method">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-name" id="paymentBkash">bKash</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-name" id="paymentNagad">Nagad</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🚀</div>
+                    <div class="payment-name" id="paymentRocket">Rocket</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🛵</div>
+                    <div class="payment-name" id="paymentPathao">Pathao Pay</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-name" id="paymentCard">Visa/MasterCard</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🏦</div>
+                    <div class="payment-name" id="paymentBank">Bank Transfer</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📲</div>
+                    <div class="payment-name" id="paymentUpay">Upay</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">💸</div>
+                    <div class="payment-name" id="paymentAmarPay">AmarPay</div>
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="payment-method">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-name" id="paymentBkash2">bKash</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-name" id="paymentNagad2">Nagad</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🚀</div>
+                    <div class="payment-name" id="paymentRocket2">Rocket</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🛵</div>
+                    <div class="payment-name" id="paymentPathao2">Pathao Pay</div>
+                </div>
             </div>
-            <div class="payment-method">
-                <div class="payment-icon">📱</div>
-                <div class="payment-name" id="paymentNagad">Nagad</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">🚀</div>
-                <div class="payment-name" id="paymentRocket">Rocket</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">🛵</div>
-                <div class="payment-name" id="paymentPathao">Pathao Pay</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">💳</div>
-                <div class="payment-name" id="paymentCard">Visa/MasterCard</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">🏦</div>
-                <div class="payment-name" id="paymentBank">Bank Transfer</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">📲</div>
-                <div class="payment-name" id="paymentUpay">Upay</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">💸</div>
-                <div class="payment-name" id="paymentAmarPay">AmarPay</div>
-            </div>
-            <!-- Duplicate for seamless scrolling -->
-            <div class="payment-method">
-                <div class="payment-icon">💰</div>
-                <div class="payment-name" id="paymentBkash2">bKash</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">📱</div>
-                <div class="payment-name" id="paymentNagad2">Nagad</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">🚀</div>
-                <div class="payment-name" id="paymentRocket2">Rocket</div>
-            </div>
-            <div class="payment-method">
-                <div class="payment-icon">🛵</div>
-                <div class="payment-name" id="paymentPathao2">Pathao Pay</div>
-            </div>
+            <p class="payment-note" id="paymentNote">All major Bangladeshi payment methods supported</p>
         </div>
-        <p class="payment-note" id="paymentNote">All major Bangladeshi payment methods supported</p>
     </div>
 
     <script>
@@ -1229,10 +1288,25 @@
             thumbs[1].classList.toggle('active', !isEnglish);
         }
 
+        // Scroll Animation for Mobile
+        function animateOnScroll() {
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            
+            pricingCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    card.classList.add('card-visible');
+                }
+            });
+        }
+
         // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-                // কোন loader নেই, সরাসরি redirect
                 window.location.href = this.getAttribute('href');
             });
         });
@@ -1321,18 +1395,13 @@
             
             console.log('🎉 PocketHisab Pricing Page Loaded!');
             
-            // Add animation to pricing cards on load
-            const pricingCards = document.querySelectorAll('.pricing-card');
-            pricingCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
+            // Initial animation for pricing cards
+            setTimeout(() => {
+                animateOnScroll();
+            }, 300);
+
+            // Add scroll event listener for mobile animation
+            window.addEventListener('scroll', animateOnScroll);
 
             const welcomeText = isEnglish ? 'Choose the perfect plan for your needs!' : 'আপনার চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন!';
             showMessage(welcomeText, 'info');
