@@ -1925,13 +1925,31 @@
 
         // Page loaded successfully
         document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading overlay
-            setTimeout(() => {
-                document.getElementById('loadingOverlay').style.opacity = '0';
+            // Hide loading overlay immediately when navigated from the same site (nav click),
+            // otherwise keep the small initial loader delay.
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const referrer = document.referrer;
+            let fromSameOrigin = false;
+            try {
+                fromSameOrigin = !!referrer && (new URL(referrer)).origin === location.origin;
+            } catch (err) {
+                fromSameOrigin = false;
+            }
+
+            if (fromSameOrigin || sessionStorage.getItem('skipLoader') === '1') {
+                // remove any session flag and hide overlay right away
+                sessionStorage.removeItem('skipLoader');
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => { loadingOverlay.style.display = 'none'; }, 100);
+            } else {
+                // default behavior for direct/other-site visits
                 setTimeout(() => {
-                    document.getElementById('loadingOverlay').style.display = 'none';
-                }, 500);
-            }, 1000);
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
 
             // Create particles
             createParticles();
