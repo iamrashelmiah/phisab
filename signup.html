@@ -1269,7 +1269,7 @@
         }
     }
 
-    // language toggle click (half-click behavior same as index)
+    // Attach toggles and initialize (mirror contact/index behavior)
     document.addEventListener('DOMContentLoaded', function () {
         const darkToggle = document.getElementById('darkModeToggle');
         const langToggle = document.getElementById('languageToggle');
@@ -1296,13 +1296,13 @@
                     isDarkMode = true;
                     document.body.classList.add('dark-mode');
                     updateDarkModeToggle(true);
-                    showMessage(isEnglish ? 'Dark mode activated' : 'ডার্ক মোড চালু হয়েছে', 'success');
+                    showMessage(isEnglish ? 'Dark mode activated' : 'ডার্ক মোড চালু হয়েছে', 'success');
                     localStorage.setItem('darkMode', 'true');
                 } else {
                     isDarkMode = false;
                     document.body.classList.remove('dark-mode');
                     updateDarkModeToggle(false);
-                    showMessage(isEnglish ? 'Light mode activated' : 'লাইট মোড চালু হয়েছে', 'success');
+                    showMessage(isEnglish ? 'Light mode activated' : 'লাইট মোড চালু হয়েছে', 'success');
                     localStorage.setItem('darkMode', 'false');
                 }
             });
@@ -1318,7 +1318,7 @@
                     isEnglish = false;
                     updateLanguage('bn');
                     updateLanguageToggle(false);
-                    showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+                    showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
                     localStorage.setItem('language', 'bn');
                 } else {
                     isEnglish = true;
@@ -1339,7 +1339,7 @@
             updateLanguage(isEnglish ? 'en' : 'bn');
             updateLanguageToggle(isEnglish);
             localStorage.setItem('language', isEnglish ? 'en' : 'bn');
-            showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+            showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
         }
     });
 </script>
