@@ -49,6 +49,10 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            margin: 8px auto;
+            max-width: 520px;
+            width: calc(100% - 48px);
+            box-sizing: border-box;
         }
 
         .glass-card::before {
@@ -465,6 +469,71 @@
             display: block;
         }
 
+        /* Navigation Bar (shared with other pages) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            z-index: 1000;
+        }
+
+        .navbar .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 8px;
+            border-radius: 6px;
+        }
+
+        .navbar .nav-links a.active {
+            color: #ffd700;
+            font-weight: 600;
+            background: rgba(255,217,0,0.06);
+        }
+
+        .nav-controls { display:flex; gap:10px; align-items:center; }
+        .capsule-toggle { width:70px; height:32px; background:rgba(255,255,255,0.12); border-radius:20px; padding:2px; cursor:pointer; display:flex; }
+        .toggle-track { display:flex; width:100%; height:100%; }
+        .toggle-thumb { flex:1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:rgba(255,255,255,0.8); border-radius:18px; }
+        .toggle-thumb.active { color:white; background:linear-gradient(135deg,#8a6de9,#6a4c9c); }
+
+        /* ensure same default navbar and form sits below it */
+        body { padding-top: 78px; }
+        .glass-card {
+            margin: 8px auto;
+            max-width: 520px;
+            width: calc(100% - 48px);
+            box-sizing: border-box;
+        }
+        @media (max-width: 480px) {
+            body { padding-top: 74px; }
+            .glass-card { width: calc(100% - 24px); padding: 20px; margin: 12px auto; }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .form-grid {
@@ -513,6 +582,37 @@
     </style>
 </head>
 <body>
+
+    <!-- Default Navigation Bar (no Create Account / Forgot Password links) -->
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="nav-left">
+            <a href="index.html" style="color:inherit; text-decoration:none; font-weight:800;">PocketHisab</a>
+        </div>
+        <div class="nav-links" aria-hidden="false">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+            <a href="index.html">Login</a>
+        </div>
+        <div class="nav-controls">
+            <div class="capsule-toggle" id="darkModeToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">☀️</div>
+                    <div class="toggle-thumb">🌙</div>
+                </div>
+            </div>
+            <div class="capsule-toggle" id="languageToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb active">EN</div>
+                    <div class="toggle-thumb">BN</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- reserve space for fixed navbar -->
+    <div style="height:74px;"></div>
 
     <div class="glass-card">
         <!-- Logo -->
@@ -1125,6 +1225,47 @@
                 }, 2000);
             }, 2000);
         }
+
+        // basic navbar toggles (use existing isEnglish variable)
+        function updateDarkModeToggle(isDark) {
+            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
+
+        function updateLanguageToggle(isEn) {
+            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', isEn);
+            thumbs[1].classList.toggle('active', !isEn);
+        }
+
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const useDark = clickX > rect.width / 2;
+            if (useDark) document.body.classList.add('dark-mode'); else document.body.classList.remove('dark-mode');
+            updateDarkModeToggle(useDark);
+            localStorage.setItem('darkMode', useDark ? 'true' : 'false');
+            showMessage(useDark ? 'Dark mode activated' : 'Light mode activated', 'info');
+        });
+
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const useBn = clickX > rect.width / 2;
+            isEnglish = !useBn;
+            updateLanguage(isEnglish ? 'en' : 'bn');
+            updateLanguageToggle(isEnglish);
+            localStorage.setItem('language', isEnglish ? 'en' : 'bn');
+            showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'info');
+        });
+
+        // nav links: direct navigation (no loader)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                window.location.href = this.getAttribute('href');
+            });
+        });
 
         // Form auto-save event listeners
         document.getElementById('firstName').addEventListener('input', autoSaveForm);
