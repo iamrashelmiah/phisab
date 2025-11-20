@@ -22,6 +22,7 @@
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
+            scroll-padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Body Styles */
@@ -81,7 +82,7 @@
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
+            bottom: max(30px, calc(30px + env(safe-area-inset-bottom)));
             right: 30px;
             width: 50px;
             height: 50px;
@@ -1197,6 +1198,17 @@
         * {
             -webkit-transform: translateZ(0);
             -webkit-perspective: 1000;
+        }
+
+        /* Safari Mobile Bottom Bar Fix */
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+            
+            .main-content {
+                padding-bottom: max(150px, env(safe-area-inset-bottom));
+            }
         }
     </style>
 </head>

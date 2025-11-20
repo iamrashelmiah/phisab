@@ -51,6 +51,7 @@
             overflow-x: hidden;
             transition: background 1s ease;
             position: relative;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Bubble Background Effect */
@@ -362,6 +363,7 @@
             align-items: center;
             justify-content: center;
             padding: 100px 20px 20px;
+            padding-bottom: calc(50px + env(safe-area-inset-bottom));
         }
 
         /* Glass Card */
@@ -818,6 +820,7 @@
             display: none;
             animation: slideIn 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            bottom: calc(15px + env(safe-area-inset-bottom));
         }
 
         .auto-save-indicator.show {
@@ -869,6 +872,21 @@
             font-size: 11px;
             margin-top: 4px;
             display: none;
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+            
+            .main-content {
+                padding-bottom: max(50px, env(safe-area-inset-bottom));
+            }
+            
+            .back-to-top,
+            .auto-save-indicator {
+                bottom: max(15px, env(safe-area-inset-bottom));
+            }
         }
     </style>
 </head>

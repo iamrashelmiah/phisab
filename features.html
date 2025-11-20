@@ -22,6 +22,7 @@
             animation: gradientAnimation 25s ease infinite;
             overflow-x: hidden;
             transition: background 1s ease;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Rainbow Background Animation */
@@ -654,6 +655,28 @@
 
         body.dark-mode .summary-section {
             background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Safari Mobile Bottom Bar Fix */
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+            
+            .main-content {
+                padding-bottom: max(50px, env(safe-area-inset-bottom));
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            scroll-padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Ensure footer content is visible */
+        .footer-section {
+            margin-bottom: max(30px, calc(30px + env(safe-area-inset-bottom)));
         }
     </style>
 </head>
