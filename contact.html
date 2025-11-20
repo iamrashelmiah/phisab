@@ -558,31 +558,31 @@
             border: 1px solid rgba(33, 150, 243, 0.25);
         }
 
-        /* Social Links */
-        .social-links {
+        /* Social Icons - ROUND SHAPE (From Login Page) */
+        .social-icons {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 8px;
+            margin-top: 20px;
         }
 
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Changed from 10px to 50% for round shape */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.15);
+            border: 1.5px solid transparent;
             position: relative;
             overflow: hidden;
         }
 
-        .social-link::before {
+        .social-icon::before {
             content: '';
             position: absolute;
             top: 0;
@@ -593,13 +593,20 @@
             transition: left 0.5s ease;
         }
 
-        .social-link:hover::before {
+        .social-icon:hover::before {
             left: 100%;
         }
 
-        .social-link:hover {
-            transform: translateY(-3px) scale(1.1);
-            background: rgba(255, 255, 255, 0.25);
+        .social-icon.whatsapp { background: rgba(37, 211, 102, 0.25); }
+        .social-icon.telegram { background: rgba(0, 136, 204, 0.25); }
+        .social-icon.facebook { background: rgba(59, 89, 152, 0.25); }
+        .social-icon.instagram { background: rgba(225, 48, 108, 0.25); }
+        .social-icon.email { background: rgba(219, 68, 55, 0.25); }
+
+        .social-icon:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         /* Form Auto-save Indicator */
@@ -848,12 +855,23 @@
                     </div>
                 </div>
 
-                <!-- Social Links -->
-                <div class="social-links">
-                    <a href="https://facebook.com/pockethisab" class="social-link" target="_blank">📘</a>
-                    <a href="https://twitter.com/pockethisab" class="social-link" target="_blank">🐦</a>
-                    <a href="https://linkedin.com/company/pockethisab" class="social-link" target="_blank">💼</a>
-                    <a href="https://wa.me/8801XXXXXXXXX" class="social-link" target="_blank">💚</a>
+                <!-- Social Media Icons - ROUND SHAPE (From Login Page) -->
+                <div class="social-icons">
+                    <a href="https://wa.me/your-number" class="social-icon whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://t.me/your-channel" class="social-icon telegram" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://facebook.com/your-page" class="social-icon facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/your-profile" class="social-icon instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:pockethisab@gmail.com" class="social-icon email">
+                        <i class="far fa-envelope"></i>
+                    </a>
                 </div>
             </div>
 
