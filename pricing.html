@@ -108,6 +108,7 @@
             background: linear-gradient(90deg, #ffd700, #ff6b6b);
             z-index: 2001;
             transition: width 0.3s ease;
+            min-width: 6px;
         }
 
         /* Back to Top Button */
@@ -1837,7 +1838,7 @@
         function updateProgressBar() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         }
 

@@ -73,6 +73,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 2001;
             transition: width 0.1s ease;
+            min-width: 6px;
         }
 
         /* Back to Top Button */
@@ -1397,7 +1398,10 @@
 
         // Update scroll progress bar
         function updateProgressBar() {
-            const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0
+                ? (document.documentElement.scrollTop || document.body.scrollTop) / height * 100
+                : 100;
             document.getElementById('progressBar').style.width = `${scrolled}%`;
         }
 
