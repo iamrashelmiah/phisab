@@ -73,6 +73,8 @@
             scroll-behavior: smooth;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             background-attachment: fixed;
+            background-size: 400% 400%;
+            background-color: #764ba2;
             min-height: 100%;
         }
 
@@ -145,22 +147,35 @@
 
         /* Typewriter Effect */
         .typewriter {
+            --type-duration: 3.8s;
+            --type-steps: 60;
             overflow: hidden;
             border-right: 2px solid #ffd700;
-            white-space: nowrap;
+            white-space: normal;
+            word-break: break-word;
             margin: 0 auto;
             display: inline-block;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            width: 100%;
+            max-width: 720px;
+            animation: typing var(--type-duration) steps(var(--type-steps), end) forwards, blink-caret 0.75s step-end infinite;
         }
 
         @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+            from { max-width: 0; }
+            to { max-width: 100%; }
         }
 
         @keyframes blink-caret {
             from, to { border-color: transparent; }
             50% { border-color: #ffd700; }
+        }
+
+        @media (max-width: 640px) {
+            .typewriter {
+                --type-duration: 4.6s;
+                --type-steps: 80;
+                font-size: 0.95rem;
+            }
         }
 
         /* Bubble Background Effect */
