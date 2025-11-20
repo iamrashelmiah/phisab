@@ -19,15 +19,37 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        html {
+            background-color: #6a4c9c;
+            min-height: 100%;
+        }
+
         /* Body Styles */
         body {
             min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
             background-size: 400% 400%;
             animation: gradientAnimation 25s ease infinite;
             overflow-x: hidden;
             transition: background 1s ease;
+            background-color: #6a4c9c;
+            padding-bottom: env(safe-area-inset-bottom);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: inherit;
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+            animation: inherit;
+            transform: translateZ(0);
         }
 
         /* Rainbow Background Animation */

@@ -23,6 +23,8 @@
         html {
             scroll-behavior: smooth;
             scroll-padding-bottom: env(safe-area-inset-bottom);
+            background-color: #764ba2;
+            min-height: 100%;
         }
 
         /* Body Styles */
@@ -35,9 +37,24 @@
             color: #333;
             overflow-x: hidden;
             min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
             /* Safari bottom bar fix */
             padding-bottom: env(safe-area-inset-bottom);
             background-color: #764ba2; /* Fallback for safe area */
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: inherit;
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+            animation: inherit;
+            transform: translateZ(0);
         }
 
         @supports (padding: max(0px)) {
