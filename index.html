@@ -20,6 +20,30 @@
             animation: gradientAnimation 25s ease infinite;
             overflow-x: hidden;
             transition: background 1s ease;
+            position: relative;
+        }
+
+        /* Bubble Background Effect */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
         }
 
         @keyframes gradientAnimation {
@@ -820,6 +844,9 @@
 </head>
 <body>
 
+    <!-- Bubble Background -->
+    <div class="bubbles" id="bubbles"></div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <!-- Left Side: Logo + Brand Name -->
@@ -835,10 +862,10 @@
         <!-- Center: Navigation Links -->
         <div class="nav-center">
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="features.html">Features</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" class="active" id="navHome">Home</a>
+                <a href="features.html" id="navFeatures">Features</a>
+                <a href="pricing.html" id="navPricing">Pricing</a>
+                <a href="contact.html" id="navContact">Contact</a>
             </div>
         </div>
 
@@ -886,13 +913,13 @@
             <!-- Login Form -->
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="email">Email or Mobile</label>
+                    <label for="email" id="emailLabel">Email or Mobile</label>
                     <input type="text" id="email" class="form-control" placeholder="Enter your email or mobile" required>
                     <div class="error-message" id="emailError"></div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" id="passwordLabel">Password</label>
                     <div class="password-container">
                         <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
                         <span class="password-toggle" onclick="togglePassword()">👁️</span>
@@ -904,7 +931,7 @@
                 <div class="form-links">
                     <label class="remember-me">
                         <input type="checkbox" id="rememberMe">
-                        <span>Remember Me</span>
+                        <span id="rememberMeText">Remember Me</span>
                     </label>
                     <a href="forgot-password.html" class="forgot-password" id="forgotPassword">Forgot Password?</a>
                 </div>
@@ -915,7 +942,7 @@
 
             <!-- Sign Up Section -->
             <div class="signup-section">
-                <span>Don't have an account? </span>
+                <span id="noAccountText">Don't have an account? </span>
                 <a href="signup.html" class="signup-link" id="signUpLink">
                     Create Account →
                 </a>
@@ -947,10 +974,36 @@
 
     <!-- Auto-save Indicator -->
     <div class="auto-save-indicator" id="autoSaveIndicator">
-        <i class="fas fa-save"></i> Form data saved
+        <i class="fas fa-save"></i> <span id="saveText">Form data saved</span>
     </div>
 
     <script>
+        // Create animated bubbles
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const bubbleCount = 50;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 10;
+                const animationDelay = Math.random() * 5;
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.animationDuration = `${animationDuration}s`;
+                bubble.style.animationDelay = `${animationDelay}s`;
+                bubble.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
         // Current states
         let isDarkMode = false;
         let isEnglish = true;
@@ -966,6 +1019,8 @@
                 pricing: "Pricing",
                 contact: "Contact",
                 login: "Login to Account",
+                emailLabel: "Email or Mobile",
+                passwordLabel: "Password",
                 emailPlaceholder: "Enter your email or mobile",
                 passwordPlaceholder: "Enter your password",
                 rememberMe: "Remember Me",
@@ -976,7 +1031,8 @@
                 darkMode: "Dark mode activated",
                 lightMode: "Light mode activated",
                 englishSelected: "English language selected",
-                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                saveText: "Form data saved"
             },
             bn: {
                 title: "পকেটহিসাব - লগইন",
@@ -985,6 +1041,8 @@
                 pricing: "মূল্য",
                 contact: "যোগাযোগ", 
                 login: "অ্যাকাউন্টে লগইন করুন",
+                emailLabel: "ইমেইল বা মোবাইল",
+                passwordLabel: "পাসওয়ার্ড",
                 emailPlaceholder: "আপনার ইমেইল বা মোবাইল দিন",
                 passwordPlaceholder: "আপনার পাসওয়ার্ড দিন",
                 rememberMe: "আমাকে মনে রাখুন",
@@ -995,32 +1053,35 @@
                 darkMode: "ডার্ক মোড সক্রিয় করা হয়েছে",
                 lightMode: "লাইট মোড সক্রিয় করা হয়েছে", 
                 englishSelected: "English language selected",
-                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                saveText: "ফর্ম ডেটা সংরক্ষিত হয়েছে"
             }
         };
 
         // Update page content based on language
         function updateLanguage(lang) {
             const t = translations[lang];
+            const isEn = lang === 'en';
             
             // Update navigation
-            document.querySelector('a[href="index.html"]').textContent = t.home;
-            document.querySelector('a[href="features.html"]').textContent = t.features;
-            document.querySelector('a[href="pricing.html"]').textContent = t.pricing;
-            document.querySelector('a[href="contact.html"]').textContent = t.contact;
+            document.getElementById('navHome').textContent = t.home;
+            document.getElementById('navFeatures').textContent = t.features;
+            document.getElementById('navPricing').textContent = t.pricing;
+            document.getElementById('navContact').textContent = t.contact;
             
-            // Update form labels and placeholders
-            document.querySelector('label[for="email"]').textContent = "Email or Mobile";
-            document.querySelector('label[for="password"]').textContent = "Password";
+            // Update form labels and placeholders - FIXED PART
+            document.getElementById('emailLabel').textContent = t.emailLabel;
+            document.getElementById('passwordLabel').textContent = t.passwordLabel;
             document.getElementById('email').placeholder = t.emailPlaceholder;
             document.getElementById('password').placeholder = t.passwordPlaceholder;
             
             // Update buttons and links
-            document.querySelector('.remember-me span').textContent = t.rememberMe;
+            document.getElementById('rememberMeText').textContent = t.rememberMe;
             document.getElementById('forgotPassword').textContent = t.forgotPassword;
             document.getElementById('loginBtn').textContent = t.login;
-            document.querySelector('.signup-section span').textContent = t.noAccount + " ";
+            document.getElementById('noAccountText').textContent = t.noAccount + " ";
             document.getElementById('signUpLink').innerHTML = t.createAccount;
+            document.getElementById('saveText').textContent = t.saveText;
             
             // Update page title
             document.title = t.title;
@@ -1281,12 +1342,12 @@
         });
 
         // Navigation Links - কোন loader নেই
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // কোন loader নেই, সরাসরি redirect
-        window.location.href = this.getAttribute('href');
-    });
-});
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // কোন loader নেই, সরাসরি redirect
+                window.location.href = this.getAttribute('href');
+            });
+        });
 
         // Add hover effects to all interactive elements
         document.querySelectorAll('button, a, input, .logo-circle, .social-icon').forEach(element => {
@@ -1295,6 +1356,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
         // Initialize toggles and form data on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Create bubbles
+            createBubbles();
+
             // Load dark mode preference
             const savedDarkMode = localStorage.getItem('darkMode');
             if (savedDarkMode === 'true') {
