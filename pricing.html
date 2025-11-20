@@ -13,6 +13,12 @@
             box-sizing: border-box;
         }
 
+        /* Safari Compatibility */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
@@ -28,6 +34,14 @@
             overflow-x: hidden;
             transition: background 1s ease;
             position: relative;
+        }
+
+        /* Gradient text fix */
+        .page-title,
+        .pricing-title,
+        .pricing-price {
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Animated Background Particles */
@@ -156,17 +170,33 @@
 
         /* Rainbow Background Animation */
         @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 50% 50%; }
-            50% { background-position: 100% 50%; }
-            75% { background-position: 50% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { 
+                background-position: 0% 50%;
+                -webkit-background-position: 0% 50%;
+            }
+            25% { 
+                background-position: 50% 50%;
+                -webkit-background-position: 50% 50%;
+            }
+            50% { 
+                background-position: 100% 50%;
+                -webkit-background-position: 100% 50%;
+            }
+            75% { 
+                background-position: 50% 50%;
+                -webkit-background-position: 50% 50%;
+            }
+            100% { 
+                background-position: 0% 50%;
+                -webkit-background-position: 0% 50%;
+            }
         }
 
         /* Navigation Bar */
         .navbar {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);  /* ← Add this */
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             padding: 10px 30px;
             position: fixed;
@@ -373,6 +403,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            /* Add explicit color fallback for Safari */
+            color: #ffffff;
             margin-bottom: 15px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
@@ -420,6 +452,7 @@
             padding: 30px;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            -webkit-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -525,7 +558,6 @@
             font-size: 2.5rem;
             font-weight: 800;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 5px;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -753,6 +785,16 @@
             overflow: hidden;
         }
 
+        /* Backdrop filter fix */
+        .navbar,
+        .glass-card,
+        .contact-form,
+        .contact-info,
+        .summary-section,
+        .faq-section {
+            -webkit-backdrop-filter: blur(20px);
+        }
+
         .scrolling-payment-methods {
             display: flex;
             animation: scrollPayment 30s linear infinite;
@@ -762,9 +804,11 @@
         @keyframes scrollPayment {
             0% {
                 transform: translateX(0);
+                -webkit-transform: translateX(0);
             }
             100% {
                 transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
             }
         }
 
@@ -1147,6 +1191,12 @@
         body.dark-mode .faq-section {
             background: rgba(0, 0, 0, 0.2);
             border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animation fixes */
+        * {
+            -webkit-transform: translateZ(0);
+            -webkit-perspective: 1000;
         }
     </style>
 </head>

@@ -13,6 +13,12 @@
             box-sizing: border-box;
         }
 
+        /* Safari Compatibility */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
         /* Body Styles */
         body {
             min-height: 100vh;
@@ -556,6 +562,30 @@
             background: rgba(33, 150, 243, 0.15);
             color: #90caf9;
             border: 1px solid rgba(33, 150, 243, 0.25);
+        }
+
+        /* Gradient text fix */
+        .page-title,
+        .pricing-title,
+        .pricing-price {
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Backdrop filter fix */
+        .navbar,
+        .glass-card,
+        .contact-form,
+        .contact-info,
+        .summary-section,
+        .faq-section {
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Animation fixes */
+        * {
+            -webkit-transform: translateZ(0);
+            -webkit-perspective: 1000;
         }
 
         /* Social Icons - ROUND SHAPE (From Login Page) */
