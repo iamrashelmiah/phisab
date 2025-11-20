@@ -1250,80 +1250,51 @@
         }, 1500);
     }
 
-    // small navbar toggle helpers (same behavior as index.html)
+    // --- Ensure language & dark-mode toggles behave like index.html ---
+    // helper to sync dark-mode toggle UI if not already present
     function updateDarkModeToggle(isDark) {
         const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
-        thumbs[0].classList.toggle('active', !isDark);
-        thumbs[1].classList.toggle('active', isDark);
+        if (thumbs && thumbs.length >= 2) {
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
     }
+
+    // helper to sync language toggle UI if not already present
     function updateLanguageToggle(isEn) {
         const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
-        thumbs[0].classList.toggle('active', isEn);
-        thumbs[1].classList.toggle('active', !isEn);
+        if (thumbs && thumbs.length >= 2) {
+            thumbs[0].classList.toggle('active', isEn);
+            thumbs[1].classList.toggle('active', !isEn);
+        }
     }
 
-    // Dark mode toggle behavior (capsule halves)
-    document.getElementById('darkModeToggle').addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const isRightClick = clickX > rect.width / 2;
-
-        if (isRightClick) {
-            isDarkMode = true;
-            document.body.classList.add('dark-mode');
-            updateDarkModeToggle(true);
-            showMessage(isEnglish ? 'Dark mode activated' : 'ডার্ক মোড চালু হয়েছে', 'success');
-            localStorage.setItem('darkMode', 'true');
-        } else {
-            isDarkMode = false;
-            document.body.classList.remove('dark-mode');
-            updateDarkModeToggle(false);
-            showMessage(isEnglish ? 'Light mode activated' : 'লাইট মোড চালু হয়েছে', 'success');
-            localStorage.setItem('darkMode', 'false');
-        }
-    });
-
-    // Language toggle behavior (capsule halves)
-    document.getElementById('languageToggle').addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const isRightClick = clickX > rect.width / 2;
-
-        if (isRightClick) {
-            isEnglish = false;
-            updateLanguage('bn');
-            updateLanguageToggle(false);
-            showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
-            localStorage.setItem('language', 'bn');
-        } else {
-            isEnglish = true;
-            updateLanguage('en');
-            updateLanguageToggle(true);
-            showMessage('English language selected', 'success');
-            localStorage.setItem('language', 'en');
-        }
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            window.location.href = this.getAttribute('href');
+    // language toggle click (half-click behavior same as index)
+    const langToggle = document.getElementById('languageToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function (e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRight = clickX > rect.width / 2;
+            if (isRight) {
+                isEnglish = false;
+                updateLanguage('bn');
+                updateLanguageToggle(false);
+                localStorage.setItem('language', 'bn');
+                showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+            } else {
+                isEnglish = true;
+                updateLanguage('en');
+                updateLanguageToggle(true);
+                localStorage.setItem('language', 'en');
+                showMessage('English language selected', 'success');
+            }
         });
-    });
+    }
 
-    // Initialize page (same init flow as index.html)
-    document.addEventListener('DOMContentLoaded', function() {
-        // Load dark mode preference
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode === 'true') {
-            isDarkMode = true;
-            document.body.classList.add('dark-mode');
-        } else {
-            isDarkMode = false;
-            document.body.classList.remove('dark-mode');
-        }
-        updateDarkModeToggle(isDarkMode);
-
-        // Load language preference
+    // initialize toggles on load to match saved prefs (same flow as index)
+    document.addEventListener('DOMContentLoaded', function () {
+        // language
         const savedLanguage = localStorage.getItem('language');
         if (savedLanguage === 'bn') {
             isEnglish = false;
@@ -1334,11 +1305,11 @@
         }
         updateLanguageToggle(isEnglish);
 
-        // Initialize any form/data if present
-        // (keep existing initialization functions)
-        if (typeof initializeFormData === 'function') initializeFormData();
-
-        console.log('🎉 PocketHisab Sign Up Page Loaded!');
+        // dark mode
+        const savedDarkMode = localStorage.getItem('darkMode');
+        const useDark = savedDarkMode === 'true';
+        if (useDark) document.body.classList.add('dark-mode'); else document.body.classList.remove('dark-mode');
+        updateDarkModeToggle(useDark);
     });
 
     // Add keyboard shortcut for language toggle (Ctrl+L)
