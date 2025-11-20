@@ -1270,46 +1270,65 @@
     }
 
     // language toggle click (half-click behavior same as index)
-    const langToggle = document.getElementById('languageToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', function (e) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isRight = clickX > rect.width / 2;
-            if (isRight) {
-                isEnglish = false;
-                updateLanguage('bn');
-                updateLanguageToggle(false);
-                localStorage.setItem('language', 'bn');
-                showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
-            } else {
-                isEnglish = true;
-                updateLanguage('en');
-                updateLanguageToggle(true);
-                localStorage.setItem('language', 'en');
-                showMessage('English language selected', 'success');
-            }
-        });
-    }
-
-    // initialize toggles on load to match saved prefs (same flow as index)
     document.addEventListener('DOMContentLoaded', function () {
-        // language
+        const darkToggle = document.getElementById('darkModeToggle');
+        const langToggle = document.getElementById('languageToggle');
+
+        // Initialize dark mode from localStorage
+        const savedDarkMode = localStorage.getItem('darkMode');
+        isDarkMode = savedDarkMode === 'true';
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        updateDarkModeToggle(isDarkMode);
+
+        // Initialize language from localStorage
         const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage === 'bn') {
-            isEnglish = false;
-            updateLanguage('bn');
-        } else {
-            isEnglish = true;
-            updateLanguage('en');
-        }
+        if (savedLanguage === 'bn') { isEnglish = false; updateLanguage('bn'); }
+        else { isEnglish = true; updateLanguage('en'); }
         updateLanguageToggle(isEnglish);
 
-        // dark mode
-        const savedDarkMode = localStorage.getItem('darkMode');
-        const useDark = savedDarkMode === 'true';
-        if (useDark) document.body.classList.add('dark-mode'); else document.body.classList.remove('dark-mode');
-        updateDarkModeToggle(useDark);
+        // Dark mode click handler (capsule halves)
+        if (darkToggle) {
+            darkToggle.addEventListener('click', function (e) {
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const isRightClick = clickX > rect.width / 2;
+                if (isRightClick) {
+                    isDarkMode = true;
+                    document.body.classList.add('dark-mode');
+                    updateDarkModeToggle(true);
+                    showMessage(isEnglish ? 'Dark mode activated' : 'ডার্ক মোড চালু হয়েছে', 'success');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    isDarkMode = false;
+                    document.body.classList.remove('dark-mode');
+                    updateDarkModeToggle(false);
+                    showMessage(isEnglish ? 'Light mode activated' : 'লাইট মোড চালু হয়েছে', 'success');
+                    localStorage.setItem('darkMode', 'false');
+                }
+            });
+        }
+
+        // Language click handler (capsule halves)
+        if (langToggle) {
+            langToggle.addEventListener('click', function (e) {
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const isRightClick = clickX > rect.width / 2;
+                if (isRightClick) {
+                    isEnglish = false;
+                    updateLanguage('bn');
+                    updateLanguageToggle(false);
+                    showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+                    localStorage.setItem('language', 'bn');
+                } else {
+                    isEnglish = true;
+                    updateLanguage('en');
+                    updateLanguageToggle(true);
+                    showMessage('English language selected', 'success');
+                    localStorage.setItem('language', 'en');
+                }
+            });
+        }
     });
 
     // Add keyboard shortcut for language toggle (Ctrl+L)
