@@ -43,15 +43,27 @@
         }
 
         body {
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
-            background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            color: #333;
             overflow-x: hidden;
-            transition: background 1s ease;
-            position: relative;
+            min-height: 100vh;
+            /* Safari bottom bar fix */
             padding-bottom: env(safe-area-inset-bottom);
+            background-color: #764ba2; /* Fallback for safe area */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
         }
 
         /* Bubble Background Effect */
