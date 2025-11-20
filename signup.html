@@ -145,38 +145,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Typewriter Effect */
-        .typewriter {
-            --type-duration: 3.8s;
-            --type-steps: 60;
-            overflow: hidden;
-            border-right: 2px solid #ffd700;
-            white-space: normal;
-            word-break: break-word;
-            margin: 0 auto;
-            display: inline-block;
-            width: 100%;
-            max-width: 720px;
-            animation: typing var(--type-duration) steps(var(--type-steps), end) forwards, blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { max-width: 0; }
-            to { max-width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ffd700; }
-        }
-
-        @media (max-width: 640px) {
-            .typewriter {
-                --type-duration: 4.6s;
-                --type-steps: 80;
-                font-size: 0.95rem;
-            }
-        }
 
         /* Navigation Bar */
         .navbar {
@@ -1129,7 +1097,7 @@
 
     <div class="glass-card">
         <!-- Logo -->
-        <div class="logo animated-gradient-text typewriter">PocketHisab</div>
+        <div class="logo animated-gradient-text">PocketHisab</div>
         
         <!-- Back to Login -->
         <div class="back-link">

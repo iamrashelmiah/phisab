@@ -120,38 +120,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Typewriter Effect */
-        .typewriter {
-            --type-duration: 3.8s;
-            --type-steps: 60;
-            overflow: hidden;
-            border-right: 2px solid #ffd700;
-            white-space: normal;
-            word-break: break-word;
-            margin: 0 auto;
-            display: inline-block;
-            width: 100%;
-            max-width: 720px;
-            animation: typing var(--type-duration) steps(var(--type-steps), end) forwards, blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { max-width: 0; }
-            to { max-width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ffd700; }
-        }
-
-        @media (max-width: 640px) {
-            .typewriter {
-                --type-duration: 4.6s;
-                --type-steps: 80;
-                font-size: 0.95rem;
-            }
-        }
 
         /* Rainbow Background Animation */
         @keyframes gradientAnimation {
@@ -873,7 +841,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <h1 class="page-title animated-gradient-text" id="pageTitle">PocketHisab Features</h1>
-            <p class="page-subtitle typewriter" id="pageSubtitle">Complete personal accounting solution with advanced features for modern financial management</p>
+            <p class="page-subtitle" id="pageSubtitle">Complete personal accounting solution with advanced features for modern financial management</p>
         </div>
 
         <!-- Features Grid -->
