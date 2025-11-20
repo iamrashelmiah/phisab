@@ -53,9 +53,7 @@
             min-height: 100vh;
             min-height: 100svh;
             min-height: 100dvh;
-            /* Safari bottom bar fix */
             padding-bottom: env(safe-area-inset-bottom);
-            background-color: #764ba2; /* Fallback for safe area */
             position: relative;
         }
 
@@ -73,7 +71,8 @@
 
         html {
             scroll-behavior: smooth;
-            background-color: #764ba2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             min-height: 100%;
         }
 
@@ -81,6 +80,87 @@
             body {
                 padding-bottom: max(20px, env(safe-area-inset-bottom));
             }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #8a6de9, #5d8de6);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1400;
+            transition: width 0.1s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: max(26px, calc(26px + env(safe-area-inset-bottom)));
+            right: 26px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            color: white;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1400;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animated Gradient Text */
+        .animated-gradient-text {
+            background: linear-gradient(120deg, #ffffff, #ffd700, #a8c5ff, #ffffff);
+            background-size: 240% 240%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #ffd700;
+            white-space: nowrap;
+            margin: 0 auto;
+            display: inline-block;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ffd700; }
         }
 
         /* Bubble Background Effect */
@@ -921,6 +1001,14 @@
 </head>
 <body>
 
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Bubble Background -->
     <div class="bubbles" id="bubbles"></div>
 
@@ -932,7 +1020,7 @@
                 <div class="logo-circle">
                     <i class="fas fa-wallet"></i>
                 </div>
-                <div class="nav-brand">PocketHisab</div>
+                <div class="nav-brand animated-gradient-text">PocketHisab</div>
             </div>
         </div>
 
@@ -983,8 +1071,8 @@
                 <div class="main-logo-circle">
                     <i class="fas fa-wallet"></i>
                 </div>
-                <div class="logo-text">PocketHisab</div>
-                <div class="logo-subtitle">Save Money for Future</div>
+                <div class="logo-text animated-gradient-text">PocketHisab</div>
+                <div class="logo-subtitle typewriter">Save Money for Future</div>
             </div>
 
             <!-- Login Form -->
@@ -1431,6 +1519,22 @@
             element.style.transition = 'all 0.3s ease';
         });
 
+        // Update scroll progress bar
+        function updateProgressBar() {
+            const scrolled = (document.documentElement.scrollTop || document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+            document.getElementById('progressBar').style.width = `${scrolled}%`;
+        }
+
+        // Show/hide back to top button
+        function toggleBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 240) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
         // Initialize toggles and form data on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Create bubbles
@@ -1456,6 +1560,18 @@
             updateLanguageToggle(isEnglish);
             
             initializeFormData();
+
+            // Kick off scroll helpers
+            updateProgressBar();
+            toggleBackToTop();
+            window.addEventListener('scroll', () => {
+                updateProgressBar();
+                toggleBackToTop();
+            });
+
+            document.getElementById('backToTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
             
             console.log('🎉 PocketHisab Purple Theme Loaded!');
             const welcomeText = isEnglish ? 'Welcome to PocketHisab! Ready to login.' : 'পকেটহিসাবে স্বাগতম! লগইন করতে প্রস্তুত।';
