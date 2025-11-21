@@ -100,17 +100,6 @@
         }
 
         /* Scroll Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #ff6b6b);
-            z-index: 2001;
-            transition: width 0.3s ease;
-            min-width: 6px;
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -1232,9 +1221,6 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Scroll Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
-
     <!-- Confetti Container -->
     <div class="confetti-container" id="confettiContainer"></div>
 
@@ -1834,14 +1820,6 @@
             });
         }
 
-        // Update scroll progress bar
-        function updateProgressBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = height > 0 ? (winScroll / height) * 100 : 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        }
-
         // Show/hide back to top button
         function toggleBackToTop() {
             const backToTop = document.getElementById('backToTop');
@@ -2014,14 +1992,9 @@
                 animateOnScroll();
             }, 300);
 
-            // Kick off progress bar/back-to-top
-            updateProgressBar();
-            toggleBackToTop();
-
             // Add event listeners
             window.addEventListener('scroll', () => {
                 animateOnScroll();
-                updateProgressBar();
                 toggleBackToTop();
             });
 

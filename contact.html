@@ -63,19 +63,6 @@
         }
 
         /* Scroll Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #8a6de9, #5d8de6);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 2001;
-            transition: width 0.1s ease;
-            min-width: 6px;
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -875,9 +862,6 @@
 </head>
 <body>
 
-    <!-- Scroll Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
-
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
@@ -1396,15 +1380,6 @@
             }
         });
 
-        // Update scroll progress bar
-        function updateProgressBar() {
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = height > 0
-                ? (document.documentElement.scrollTop || document.body.scrollTop) / height * 100
-                : 100;
-            document.getElementById('progressBar').style.width = `${scrolled}%`;
-        }
-
         // Show/hide back to top button
         function toggleBackToTop() {
             const backToTop = document.getElementById('backToTop');
@@ -1439,10 +1414,8 @@
             initializeFormData();
 
             // Scroll helpers
-            updateProgressBar();
             toggleBackToTop();
             window.addEventListener('scroll', () => {
-                updateProgressBar();
                 toggleBackToTop();
             });
 
